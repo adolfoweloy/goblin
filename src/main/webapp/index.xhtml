@@ -2,7 +2,14 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 	
 	<h:body>
-		<h:outputText value="Hello"/>
+		<h:outputText value="Welcome to Goblin"/>
+		
+		<h:form>
+			<ul>
+				<li><h:commandLink value="Suppliers" action="supplier/list.xhtml"/></li>
+				<li><h:commandLink value="Accounts Payable" action="accounts-payable/list.xhtml"/></li>
+			</ul>
+		</h:form>
 	</h:body>
 	
 </html>

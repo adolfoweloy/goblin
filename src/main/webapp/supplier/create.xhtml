@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<h:body>
+		<h:outputText value="Supplier"/>
+		
+		<h:form>
+		
+			<h:panelGrid columns="2">
+				
+				<h:outputLabel value="Name" for="name"/>
+				<h:inputText id="name" value="#{supplierBean.supplier.name}" />
+
+				<h:outputLabel value="Regular Day of Payment" for="regularDayOfPayment"/>
+				<h:inputText id="regularDayOfPayment" value="#{supplierBean.supplier.regularDayOfPayment}" />
+				
+				<h:outputLabel value="Tax Payer Type" for="taxPayerType"/>
+				<h:selectOneRadio id="taxPayerType"
+					value="#{supplierBean.supplier.taxPayerType}"
+					layout="lineDirection">
+					<f:selectItems value="#{supplierBean.taxPayerTypes}" />					
+					<f:ajax render="taxPayerNumber"/>
+				</h:selectOneRadio>
+				
+				<h:outputLabel value="Tax Payer Number" for="taxPayerNumber"/>
+				<h:inputText id="taxPayerNumber" 
+					value="#{supplierBean.supplier.taxPayerNumber}"
+					maxlength="#{supplierBean.supplier.taxPayerNumberSize}"/>
+				
+			</h:panelGrid>
+			
+							
+			<h:commandButton action="#{supplierBean.save}" value="Save"/>
+		</h:form>
+		
+	</h:body>
+	
+</html>

@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<h:body>
+		<h:outputText value="Supplier"/>
+		
+		<h:form>
+			<h:dataTable value="#{supplierBean.list}" var="supplier">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					#{supplier.id}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					#{supplier.name}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Regular Day of Payment</f:facet>
+					#{supplier.regularDayOfPayment}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Tax Payer Number</f:facet>
+					#{supplier.taxPayerNumber}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Tax Payer Type</f:facet>
+					#{supplier.taxPayerType}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Actions</f:facet>
+					<h:commandLink action="#{supplierBean.delete(supplier.id)}" value="Delete"/>
+				</h:column>
+			</h:dataTable>
+		
+			<h:commandLink action="#{supplierBean.create}">New</h:commandLink>
+		</h:form>
+		
+	</h:body>
+	
+</html>

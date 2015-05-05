@@ -1,4 +1,4 @@
-package br.com.goblin.accounts;
+package br.com.goblin.domain.supplier;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import br.com.goblin.domain.account.TaxPayerType;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
@@ -19,7 +21,7 @@ public class Supplier {
 	private String name;
 	
 	@Column(name = "regular_day_of_payment")
-	private int regularDayOfPayment;
+	private Integer regularDayOfPayment;
 	
 	@Column(name = "tax_payer_number")
 	private String taxPayerNumber;
@@ -44,17 +46,38 @@ public class Supplier {
 	public String getName() {
 		return name;
 	}
-	
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Integer getRegularDayOfPayment() {
+		return regularDayOfPayment;
+	}
+
+	public void setRegularDayOfPayment(Integer regularDayOfPayment) {
+		this.regularDayOfPayment = regularDayOfPayment;
+	}
+
 	public String getTaxPayerNumber() {
 		return taxPayerNumber;
 	}
-	
+
+	public void setTaxPayerNumber(String taxPayerNumber) {
+		this.taxPayerNumber = taxPayerNumber;
+	}
+
 	public TaxPayerType getTaxPayerType() {
+		
+		if (taxPayerType == null) {
+			return TaxPayerType.INDIVIDUAL;
+		}
+		
 		return taxPayerType;
 	}
 
-	public int getRegularDayOfPayment() {
-		return regularDayOfPayment;
+	public void setTaxPayerType(TaxPayerType taxPayerType) {
+		this.taxPayerType = taxPayerType;
 	}
 
 	@Override

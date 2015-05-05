@@ -1,4 +1,4 @@
-package br.com.goblin.accounts;
+package br.com.goblin.domain.account;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import br.com.goblin.domain.supplier.Supplier;
 
 import com.google.common.base.MoreObjects;
 

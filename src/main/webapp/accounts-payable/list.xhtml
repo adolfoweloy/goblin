@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<h:body>
+		<h:outputText value="Accounts Payable"/>
+		
+		<h:form id="formAccountsPayable">
+			<h:dataTable value="#{accountsPayableBean.list}" var="entry">
+				<h:column>
+					<f:facet name="header">Supplier</f:facet>
+					#{entry.supplier.name}
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Due Date</f:facet>
+					<h:outputText value="#{entry.dueDate.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy"/>
+					</h:outputText>
+					
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Value</f:facet>
+					#{entry.value}
+				</h:column>
+			</h:dataTable>
+			
+			<h:commandLink id="newAccountPayable" value="New" action="#{accountsPayableBean.create}"/>
+			<br/>
+			<h:commandLink id="home" value="Home" action="../index"/>
+		</h:form>
+				
+	</h:body>
+	
+</html>
