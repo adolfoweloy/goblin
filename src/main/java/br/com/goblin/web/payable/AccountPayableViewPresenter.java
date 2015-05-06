@@ -15,6 +15,14 @@ public class AccountPayableViewPresenter {
 	
 	private BigDecimal value;
 
+	private Long id;
+	
+	public AccountPayableViewPresenter() {}
+	
+	public AccountPayableViewPresenter(Long id) {
+		this.id = id;
+	}
+	
 	public Supplier getSupplier() {
 		return supplier;
 	}
@@ -25,6 +33,10 @@ public class AccountPayableViewPresenter {
 
 	public Calendar getDueDate() {
 
+		if (id != null) {
+			return dueDate;
+		}
+		
 		if (supplier != null) {
 			Integer regularDayOfPayment = supplier.getRegularDayOfPayment();
 			Calendar instance = Calendar.getInstance();
@@ -50,6 +62,7 @@ public class AccountPayableViewPresenter {
 
 	public AccountPayable build() {
 		AccountPayable payable = new AccountPayable(supplier, dueDate, value);
+		payable.setId(id);
 		return payable;
 	}
 	

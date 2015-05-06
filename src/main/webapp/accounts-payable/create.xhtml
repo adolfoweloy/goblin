@@ -20,7 +20,7 @@
 
 				<h:outputLabel value="Due Date" for="dueDate"/>
 				<h:inputText id="dueDate" value="#{accountsPayableBean.accountPayable.dueDate.time}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
+					<f:convertDateTime type="date" dateStyle="medium" locale="pt_BR" />
 				</h:inputText>
 				
 				<h:outputLabel value="Value" for="value"/>

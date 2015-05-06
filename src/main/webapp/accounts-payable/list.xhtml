@@ -24,6 +24,15 @@
 					<f:facet name="header">Value</f:facet>
 					#{entry.value}
 				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Actions</f:facet>
+					<h:panelGroup>
+						<h:commandLink action="#{accountsPayableBean.delete(entry.id)}" value="Delete"/>
+						<h:commandLink action="#{accountsPayableBean.edit(entry.id)}" value="Edit"/>
+					</h:panelGroup>
+				</h:column>
+				
 			</h:dataTable>
 			
 			<h:commandLink id="newAccountPayable" value="New" action="#{accountsPayableBean.create}"/>

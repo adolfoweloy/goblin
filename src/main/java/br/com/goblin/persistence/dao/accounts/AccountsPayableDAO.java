@@ -27,4 +27,8 @@ public class AccountsPayableDAO {
 	public void save(AccountPayable payable) {
 		em.persist(payable);
 	}
+
+	public AccountPayable findBy(Long id) {
+		return em.find(AccountPayable.class, id);
+	}
 }

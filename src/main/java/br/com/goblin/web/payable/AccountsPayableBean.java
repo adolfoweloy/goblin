@@ -31,9 +31,25 @@ public class AccountsPayableBean {
 		return "create";
 	}
 	
+	public String edit(Long id) {
+		AccountPayable payable = accounts.findBy(id);
+		
+		accountPayable = new AccountPayableViewPresenter(id);
+		accountPayable.setDueDate(payable.getDueDate());
+		accountPayable.setSupplier(payable.getSupplier());
+		accountPayable.setValue(payable.getValue());
+		
+		return "create";
+	}
+	
+	public String delete(Long id) {
+		accounts.delete(id);
+		return "list.xhtml?faces-redirect=true";
+	}
+	
 	public String save() {
 		accounts.save(accountPayable.build());
-		return "list";
+		return "list.xhtml?faces-redirect=true";
 	}
 	
 	public List<Supplier> getSuppliers() {
