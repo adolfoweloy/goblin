@@ -10,7 +10,8 @@
 			<h:panelGrid columns="2">
 				
 				<h:outputLabel value="Supplier" for="supplier"/>
-				<h:selectOneMenu id="supplier" value="#{accountsPayableBean.accountPayable.supplier}">
+				<h:selectOneMenu id="supplier" value="#{accountsPayableBean.accountPayable.supplier}"
+					disabled="#{accountsPayableBean.accountPayable.canEditSupplier}">
 					<f:selectItem itemLabel="Select one supplier"/>
 					<f:selectItems value="#{accountsPayableBean.suppliers}" var="supplier"
 						itemLabel="#{supplier.name}" itemValue="#{supplier}">

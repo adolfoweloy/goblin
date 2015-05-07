@@ -1,8 +1,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
-	
-	<h:body>
-		<h:outputText value="dashboard"/>
-	</h:body>
-	
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<h:outputText value="dashboard" />
+
+
+	<p:tabView>
+
+		<p:tab title="Godfather Part I">
+			<h:panelGrid columns="2" cellpadding="10">
+				<h:outputText value="conteudo"/>
+				<h:outputText value="#{}"/>
+			</h:panelGrid>
+		</p:tab>
+		
+		<p:tab title="Godfather Part II">
+			<h:panelGrid columns="2" cellpadding="10">
+			</h:panelGrid>
+		</p:tab>
+
+	</p:tabView>
+
+</h:body>
+
+
 </html>

@@ -60,6 +60,10 @@ public class AccountPayableViewPresenter {
 		this.value = value;
 	}
 
+	public boolean getCanEditSupplier() {
+		return id != null;
+	}
+	
 	public AccountPayable build() {
 		AccountPayable payable = new AccountPayable(supplier, dueDate, value);
 		payable.setId(id);
