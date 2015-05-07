@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 
 import br.com.goblin.domain.account.AccountPayable;
 import br.com.goblin.domain.supplier.Supplier;
@@ -20,6 +21,9 @@ public class AccountsPayableBean {
 	private SupplierDAO suppliers;
 	
 	private AccountPayableViewPresenter accountPayable = new AccountPayableViewPresenter();
+
+	@ManagedProperty(value="#{expensesBean}")
+	private ExpensesBean expensesBean;
 	
 	@PostConstruct
 	public void init() {
@@ -52,6 +56,11 @@ public class AccountsPayableBean {
 		return "list.xhtml?faces-redirect=true";
 	}
 	
+	public String pay(Long id) {
+		AccountPayable payable = accounts.findBy(id);
+		return expensesBean.payment(payable);
+	}
+	
 	public List<Supplier> getSuppliers() {
 		return suppliers.list();
 	}
@@ -73,4 +82,7 @@ public class AccountsPayableBean {
 		this.accountPayable = accountPayable;
 	}
 
+	public void setExpensesBean(ExpensesBean expensesBean) {
+		this.expensesBean = expensesBean;
+	}
 }

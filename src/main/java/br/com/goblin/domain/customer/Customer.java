@@ -1,4 +1,4 @@
-package br.com.goblin.domain.account;
+package br.com.goblin.domain.customer;
 
 import java.util.Calendar;
 
@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import br.com.goblin.domain.account.TaxPayerType;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;

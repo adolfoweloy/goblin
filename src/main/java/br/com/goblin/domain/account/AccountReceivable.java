@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import br.com.goblin.domain.customer.Customer;
+
 public class AccountReceivable {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
