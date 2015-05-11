@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+	
+	<h:body>
+		<h:outputText value="Warning"/>
+		
+		<h:form>
+			<h:panelGrid columns="1">
+				<h:panelGroup>
+					<h:outputText value="#{confirmationBean.message}"/>
+				</h:panelGroup>
+				
+				<h:panelGrid columns="2">
+					<h:commandButton value="OK" action="#{confirmationBean.executeConfirm}" />
+					<h:commandButton value="Cancel" action="#{confirmationBean.executeCancel}" />
+				</h:panelGrid>
+			</h:panelGrid>
+		</h:form>
+		
+	</h:body>
+	
+</html>

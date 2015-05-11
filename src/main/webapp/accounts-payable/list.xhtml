@@ -27,16 +27,25 @@
 				
 				<h:column>
 					<f:facet name="header">Actions</f:facet>
-					<h:panelGrid columns="1">
-						<h:commandLink action="#{accountsPayableBean.delete(entry.id)}" value="Delete"/>
-						<h:commandLink action="#{accountsPayableBean.edit(entry.id)}" value="Edit"/>
-						<h:commandLink action="#{accountsPayableBean.pay(entry.id)}" value="Pay"/>
+					<h:panelGrid columns="3">
+						<h:commandLink action="#{accountsPayableBean.edit(entry.id)}" >
+							<h:graphicImage library="default" name="images/edit.png"/>
+						</h:commandLink>
+						<h:commandLink action="#{accountsPayableBean.delete(entry.id)}">
+							<h:graphicImage library="default" name="images/delete.png"/>
+						</h:commandLink>
+						<h:commandLink action="#{accountsPayableBean.pay(entry.id)}" >
+							<h:graphicImage library="default" name="images/payment.png" />
+						</h:commandLink>
 					</h:panelGrid>
 				</h:column>
 				
 			</h:dataTable>
 			
-			<h:commandLink id="newAccountPayable" value="New" action="#{accountsPayableBean.create}"/>
+			<h:commandLink id="newAccountPayable" action="#{accountsPayableBean.create}">
+				<h:graphicImage library="default" name="images/new.png" />
+			</h:commandLink>
+			
 			<br/>
 			<h:commandLink id="home" value="Home" action="../index"/>
 		</h:form>

@@ -1,4 +1,4 @@
-package br.com.goblin.auth;
+package br.com.goblin.listener;
 
 import java.util.regex.Pattern;
 

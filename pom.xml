@@ -60,6 +60,12 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+<dependency>
+	<groupId>javax.el</groupId>
+	<artifactId>javax.el-api</artifactId>
+	<version>2.2.5</version>
+</dependency>
+		
 
 		<!-- utilities dependencies -->
 		<dependency>

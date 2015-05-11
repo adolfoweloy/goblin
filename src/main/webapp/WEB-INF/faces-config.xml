@@ -11,10 +11,15 @@
 			<to-view-id>/login.xhtml</to-view-id>
 			<redirect/>
 		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>confirmation</from-outcome>
+			<to-view-id>/dialog/confirm.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 	
 	<lifecycle>
-		<phase-listener>br.com.goblin.auth.AuthorizationListener</phase-listener>
+		<phase-listener>br.com.goblin.listener.AuthorizationListener</phase-listener>
 	</lifecycle>
 	
 </faces-config>

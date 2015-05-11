@@ -10,6 +10,9 @@ import br.com.goblin.domain.account.AccountPayable;
 import br.com.goblin.domain.supplier.Supplier;
 import br.com.goblin.persistence.dao.accounts.AccountsPayableDAO;
 import br.com.goblin.persistence.dao.supplier.SupplierDAO;
+import br.com.goblin.web.dialog.ConfirmationBean;
+import br.com.goblin.web.dialog.ConfirmationBean.ConfirmationAction;
+import br.com.goblin.web.faces.FacesUtils;
 
 @ManagedBean
 public class AccountsPayableBean {
@@ -46,9 +49,23 @@ public class AccountsPayableBean {
 		return "create";
 	}
 	
-	public String delete(Long id) {
+	public String delete(Long id) throws NoSuchMethodException, SecurityException {
+		
+		ConfirmationBean confirmBean = FacesUtils.findBean(ConfirmationBean.BEAN_NAME);
+		confirmBean.setMessage("Do you want to remove selected account payable");
+		confirmBean.setConfirm(new ConfirmationAction("accountsPayableBean", "confirmDelete", new Object[]{id}));
+		confirmBean.setCancel(new ConfirmationAction("accountsPayableBean", "cancelDelete", new Object[]{}));
+		
+		return confirmBean.showMessage();
+	}
+	
+	public String confirmDelete(Long id) {
 		accounts.delete(id);
-		return "list.xhtml?faces-redirect=true";
+		return "/accounts-payable/list.xhtml?faces-redirect=true";
+	}
+	
+	public String cancelDelete() {
+		return "/accounts-payable/list.xhtml?faces-redirect=true";
 	}
 	
 	public String save() {
