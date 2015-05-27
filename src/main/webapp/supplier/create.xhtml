@@ -13,10 +13,12 @@
 			<h:panelGrid columns="2">
 				
 				<h:outputLabel value="Name" for="name"/>
-				<h:inputText id="name" value="#{supplierBean.supplier.name}" />
+				<h:inputText id="name" value="#{supplierBean.supplier.name}" 
+					required="true" requiredMessage="must provide supplier name"/>
 
 				<h:outputLabel value="Regular Day of Payment" for="regularDayOfPayment"/>
-				<h:inputText id="regularDayOfPayment" value="#{supplierBean.supplier.regularDayOfPayment}" />
+				<h:inputText id="regularDayOfPayment" value="#{supplierBean.supplier.regularDayOfPayment}" 
+					required="true" requiredMessage="must provide regular day of payment"/>
 				
 				<h:outputLabel value="Tax Payer Type" for="taxPayerType"/>
 				<h:selectOneRadio id="taxPayerType"
@@ -29,7 +31,8 @@
 				<h:outputLabel value="Tax Payer Number" for="taxPayerNumber"/>
 				<h:inputText id="taxPayerNumber" 
 					value="#{supplierBean.supplier.taxPayerNumber}"
-					maxlength="#{supplierBean.supplier.taxPayerNumberSize}">
+					maxlength="#{supplierBean.supplier.taxPayerNumberSize}"
+					required="true" requiredMessage="must provide tax payer number">
 					<f:validator validatorId="StellaCPFValidator" disabled="#{!supplierBean.supplier.corporate}"/>
 					<f:validator validatorId="StellaCNPJValidator" disabled="#{supplierBean.supplier.corporate}"/>
 				</h:inputText>

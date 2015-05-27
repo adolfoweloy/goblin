@@ -1,10 +1,13 @@
 package br.com.goblin.web.supplier;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.model.SelectItem;
 
 import br.com.goblin.domain.account.TaxPayerType;
@@ -12,6 +15,7 @@ import br.com.goblin.domain.supplier.Supplier;
 import br.com.goblin.persistence.dao.supplier.SupplierDAO;
 
 @ManagedBean
+@ViewScoped
 public class SupplierBean {
 
 	private List<Supplier> suppliers;
