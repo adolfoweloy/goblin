@@ -43,6 +43,10 @@ public class SupplierBean {
 		return "list";
 	}
 
+	public String cancel() {
+		return "list";
+	}
+	
 	public String delete(Long id) {
 		dao.remove(id);
 		return "list.xhtml?faces-redirect=true";
