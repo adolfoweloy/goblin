@@ -4,7 +4,9 @@
 	
 	<h:body>
 		<h:outputText value="Accounts Payable"/>
-		
+	
+		<h:messages/>
+			
 		<h:form>
 		
 			<h:panelGrid columns="2">
@@ -12,6 +14,7 @@
 				<h:outputLabel value="Supplier" for="supplier"/>
 				<h:selectOneMenu id="supplier" value="#{accountsPayableBean.accountPayable.supplier}"
 					disabled="#{accountsPayableBean.accountPayable.canEditSupplier}">
+					<f:validateRequired />
 					<f:selectItem itemLabel="Select one supplier"/>
 					<f:selectItems value="#{accountsPayableBean.suppliers}" var="supplier"
 						itemLabel="#{supplier.name}" itemValue="#{supplier}">
@@ -20,20 +23,23 @@
 				</h:selectOneMenu>
 
 				<h:outputLabel value="Due Date" for="dueDate"/>
-				<h:inputText id="dueDate" value="#{accountsPayableBean.accountPayable.dueDate.time}">
+				<h:inputText id="dueDate" value="#{accountsPayableBean.accountPayable.dueDate.time}" 
+					required="true" requiredMessage="preencher a data de vencimento">
 					<f:convertDateTime type="date" dateStyle="medium" locale="pt_BR" />
 				</h:inputText>
 				
 				<h:outputLabel value="Value" for="value"/>
 				<h:inputText id="value" 
 					value="#{accountsPayableBean.accountPayable.value}"
-					size="20" maxlength="6">
+					size="20" maxlength="6"
+					required="true" requiredMessage="preencher o valor da conta">
 					<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2"/>
 				</h:inputText>
 				
 			</h:panelGrid>
 							
 			<h:commandButton action="#{accountsPayableBean.save}" value="Save"/>
+			<h:commandButton action="#{accountsPayableBean.cancel}" value="Cancel"/>
 		</h:form>
 		
 	</h:body>

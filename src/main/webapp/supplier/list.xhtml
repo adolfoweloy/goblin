@@ -34,11 +34,15 @@
 				
 				<h:column>
 					<f:facet name="header">Actions</f:facet>
-					<h:commandLink action="#{supplierBean.delete(supplier.id)}" value="Delete"/>
+					<h:commandLink action="#{supplierBean.delete(supplier.id)}">
+						<h:graphicImage library="default" name="images/delete.png"/>
+					</h:commandLink>
 				</h:column>
 			</h:dataTable>
 		
-			<h:commandLink action="#{supplierBean.create}">New</h:commandLink>
+			<h:commandLink action="#{supplierBean.create}">
+				<h:graphicImage library="default" name="images/new.png" />
+			</h:commandLink>
 		</h:form>
 		
 	</h:body>

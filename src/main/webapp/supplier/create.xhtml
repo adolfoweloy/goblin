@@ -26,7 +26,10 @@
 				<h:outputLabel value="Tax Payer Number" for="taxPayerNumber"/>
 				<h:inputText id="taxPayerNumber" 
 					value="#{supplierBean.supplier.taxPayerNumber}"
-					maxlength="#{supplierBean.supplier.taxPayerNumberSize}"/>
+					maxlength="#{supplierBean.supplier.taxPayerNumberSize}">
+					<f:validator validatorId="StellaCPFValidator" disabled="#{!supplierBean.supplier.corporate}"/>
+					<f:validator validatorId="StellaCNPJValidator" disabled="#{supplierBean.supplier.corporate}"/>
+				</h:inputText>
 				
 			</h:panelGrid>
 			

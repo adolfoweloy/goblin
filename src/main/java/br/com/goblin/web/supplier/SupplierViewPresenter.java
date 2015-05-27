@@ -54,6 +54,10 @@ public class SupplierViewPresenter {
 		return this.taxPayerType.getSize();
 	}
 	
+	public boolean isCorporate() {
+		return TaxPayerType.CORPORATE.equals(this.taxPayerType);
+	}
+	
 	public Supplier buildSupplier() {
 		Supplier supplier = new Supplier(name, taxPayerNumber, taxPayerType);
 		

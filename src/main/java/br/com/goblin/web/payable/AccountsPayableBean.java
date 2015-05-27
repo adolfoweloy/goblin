@@ -73,6 +73,10 @@ public class AccountsPayableBean {
 		return "list.xhtml?faces-redirect=true";
 	}
 	
+	public String cancel() {
+		return "list.xhtml?faces-redirect=true";
+	}
+	
 	public String pay(Long id) {
 		AccountPayable payable = accounts.findBy(id);
 		return expensesBean.payment(payable);

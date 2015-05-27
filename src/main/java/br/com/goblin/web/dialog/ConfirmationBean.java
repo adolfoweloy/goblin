@@ -5,7 +5,7 @@ import javax.faces.bean.ManagedBean;
 import br.com.goblin.web.faces.FacesUtils;
 
 /**
- * This class, is an example of slash scope usage.
+ * This class, is an example of flash scope usage.
  * When working with primefaces, you do not need to create a dedicated page
  * just to ask users for confirmations. With frameworks such as primefaces, developers should use modal dialogs
  * instead of make users wait for submissions between pages belonging to confirmation flow.
