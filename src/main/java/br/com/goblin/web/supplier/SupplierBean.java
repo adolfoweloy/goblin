@@ -1,18 +1,21 @@
 package br.com.goblin.web.supplier;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 import br.com.goblin.domain.account.TaxPayerType;
 import br.com.goblin.domain.supplier.Supplier;
 import br.com.goblin.persistence.dao.supplier.SupplierDAO;
+import br.com.goblin.web.dialog.ConfirmationBean;
+import br.com.goblin.web.dialog.ConfirmationBean.ConfirmationAction;
+import br.com.goblin.web.faces.FacesUtils;
 
 @ManagedBean
 @ViewScoped
@@ -52,8 +55,34 @@ public class SupplierBean {
 	}
 	
 	public String delete(Long id) {
-		dao.remove(id);
-		return "list.xhtml?faces-redirect=true";
+		ConfirmationBean confirmBean = FacesUtils.findBean(ConfirmationBean.BEAN_NAME);
+		confirmBean.setMessage("Do you want to remove selected supplier?");
+		confirmBean.setConfirm(new ConfirmationAction("supplierBean", "confirmDelete", new Object[]{id}));
+		confirmBean.setCancel(new ConfirmationAction("supplierBean", "cancelDelete", new Object[]{}));
+		
+		return confirmBean.showMessage();
+	}
+	
+	public String confirmDelete(Long id) {
+		
+		if (dao.hasAccountsPayable(id)) {
+			FacesContext ctx = FacesContext.getCurrentInstance();
+			ctx.addMessage("supplier", 
+				new FacesMessage(
+						FacesMessage.SEVERITY_ERROR, 
+						"Current supplier has registered accounts payable", 
+						"Current supplier has being used"));
+			
+		} else { 
+			dao.remove(id);
+		}
+		
+		return "/supplier/list.xhtml?faces-redirect=true";
+		
+	}
+	
+	public String cancelDelete() {
+		return "/supplier/list.xhtml?faces-redirect=true";
 	}
 	
 	public SupplierViewPresenter getSupplier() {
