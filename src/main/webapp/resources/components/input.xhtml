@@ -15,12 +15,16 @@
 	<cc:implementation>
 		<h:outputLabel value="#{cc.attrs.label}" for="#{cc.attrs.id}"/>
 		<h:panelGrid columns="2">
+		
 			<h:inputText id="#{cc.attrs.id}" 
 				value="#{cc.attrs.value}"
 				maxlength="#{cc.attrs.maxlength}"
 				required="#{cc.attrs.required}" requiredMessage="#{cc.attrs.requiredMessage}">
+				<cc:insertChildren/>
 			</h:inputText>
+			
 			<h:message for="#{cc.attrs.id}" />
+			
 		</h:panelGrid>
 	</cc:implementation>
 	
