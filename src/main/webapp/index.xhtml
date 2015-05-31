@@ -1,14 +1,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+	</h:head>
 	
 	<h:body>
-		<h:outputText value="Welcome to Goblin"/>
 		
 		<h:form>
-			<ul>
-				<li><h:commandLink value="Suppliers" action="supplier/list.xhtml"/></li>
-				<li><h:commandLink value="Accounts Payable" action="accounts-payable/list.xhtml"/></li>
-			</ul>
+			<p:menubar>
+				<p:submenu label="Registry"	>
+					<p:menuitem value="Supplier" url="supplier/list.xhtml"/>
+				</p:submenu>
+				
+				<p:submenu label="Accounts">
+					<p:menuitem value="Accounts Payable" url="accounts-payable/list.xhtml"/>
+				</p:submenu>
+			</p:menubar>
+			
+			<h:outputText value="Welcome to Goblin"/>
+		
 		</h:form>
 	</h:body>
 	

@@ -45,4 +45,12 @@
 		<param-name>org.apache.myfaces.SERIALIZE_STATE_IN_SESSION</param-name>
 		<param-value>false</param-value>
 	</context-param>
+	
+	<!-- primefaces -->
+	<context-param>  
+	    <param-name>primefaces.THEME</param-name>  
+	    <param-value>aristo</param-value>  
+	</context-param>
+	
+	  
 </web-app>
