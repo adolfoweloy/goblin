@@ -1,5 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	
 	<h:head>
@@ -7,20 +8,15 @@
 	
 	<h:body>
 		
-		<h:form>
-			<p:menubar>
-				<p:submenu label="Registry"	>
-					<p:menuitem value="Supplier" url="supplier/list.xhtml"/>
-				</p:submenu>
+		<ui:composition template="/WEB-INF/template/main.xhtml">
+			<ui:define name="body">
+				<h:form>
+					
+					<h:outputText value="Welcome to Goblin"/>
 				
-				<p:submenu label="Accounts">
-					<p:menuitem value="Accounts Payable" url="accounts-payable/list.xhtml"/>
-				</p:submenu>
-			</p:menubar>
-			
-			<h:outputText value="Welcome to Goblin"/>
-		
-		</h:form>
+				</h:form>
+			</ui:define>
+		</ui:composition>
 	</h:body>
 	
 </html>
