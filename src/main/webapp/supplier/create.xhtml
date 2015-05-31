@@ -6,19 +6,25 @@
 	<h:body>
 		<h:outputText value="Supplier"/>
 		
-		<h:messages/>
+		<h:messages globalOnly="true"/>
 		
 		<h:form>
 		
 			<h:panelGrid columns="2">
 				
 				<h:outputLabel value="Name" for="name"/>
-				<h:inputText id="name" value="#{supplierBean.supplier.name}" 
-					required="true" requiredMessage="must provide supplier name"/>
-
+				<h:panelGrid columns="2">
+					<h:inputText id="name" value="#{supplierBean.supplier.name}" 
+						required="true" requiredMessage="#{msg['supplier.name.required']}"/>
+					<h:message for="name"/>
+				</h:panelGrid>
+				
 				<h:outputLabel value="Regular Day of Payment" for="regularDayOfPayment"/>
-				<h:inputText id="regularDayOfPayment" value="#{supplierBean.supplier.regularDayOfPayment}" 
-					required="true" requiredMessage="must provide regular day of payment"/>
+				<h:panelGrid columns="2">
+					<h:inputText id="regularDayOfPayment" value="#{supplierBean.supplier.regularDayOfPayment}" 
+						required="true" requiredMessage="#{msg['supplier.regularday.required']}"/>
+					<h:message for="regularDayOfPayment"/>
+				</h:panelGrid>
 				
 				<h:outputLabel value="Tax Payer Type" for="taxPayerType"/>
 				<h:selectOneRadio id="taxPayerType"
@@ -28,14 +34,18 @@
 					<f:ajax render="taxPayerNumber"/>
 				</h:selectOneRadio>
 				
+				
 				<h:outputLabel value="Tax Payer Number" for="taxPayerNumber"/>
-				<h:inputText id="taxPayerNumber" 
-					value="#{supplierBean.supplier.taxPayerNumber}"
-					maxlength="#{supplierBean.supplier.taxPayerNumberSize}"
-					required="true" requiredMessage="must provide tax payer number">
-					<f:validator validatorId="StellaCPFValidator" disabled="#{!supplierBean.supplier.corporate}"/>
-					<f:validator validatorId="StellaCNPJValidator" disabled="#{supplierBean.supplier.corporate}"/>
-				</h:inputText>
+				<h:panelGrid columns="2">
+					<h:inputText id="taxPayerNumber" 
+						value="#{supplierBean.supplier.taxPayerNumber}"
+						maxlength="#{supplierBean.supplier.taxPayerNumberSize}"
+						required="true" requiredMessage="#{msg['supplier.tax_payer_number.required']}">
+						<f:validator validatorId="StellaCPFValidator" disabled="#{!supplierBean.supplier.corporate}"/>
+						<f:validator validatorId="StellaCNPJValidator" disabled="#{supplierBean.supplier.corporate}"/>
+					</h:inputText>
+					<h:message for="taxPayerNumber" />
+				</h:panelGrid>
 				
 			</h:panelGrid>
 			

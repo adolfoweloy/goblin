@@ -15,7 +15,7 @@
 				<h:selectOneMenu id="supplier" value="#{accountsPayableBean.accountPayable.supplier}"
 					disabled="#{accountsPayableBean.accountPayable.canEditSupplier}">
 					<f:validateRequired />
-					<f:selectItem itemLabel="Select one supplier"/>
+					<f:selectItem itemLabel="Select one supplier" noSelectionOption="true"/>
 					<f:selectItems value="#{accountsPayableBean.suppliers}" var="supplier"
 						itemLabel="#{supplier.name}" itemValue="#{supplier}">
 					</f:selectItems>
@@ -24,7 +24,7 @@
 
 				<h:outputLabel value="Due Date" for="dueDate"/>
 				<h:inputText id="dueDate" value="#{accountsPayableBean.accountPayable.dueDate.time}" 
-					required="true" requiredMessage="preencher a data de vencimento">
+					required="true" requiredMessage="preencher a data de vencimento" >
 					<f:convertDateTime type="date" dateStyle="medium" locale="pt_BR" />
 				</h:inputText>
 				

@@ -29,21 +29,10 @@ public class SupplierDAO {
 	
 	public boolean hasAccountsPayable(Long id) {
 		EntityManager em = JpaUtil.getEntityManager();
-		Query query = em.createQuery("select new TotalOfAccountsPayable(count(a)) from AccountPayable a inner join a.supplier s where s.id = :id", 
-			TotalOfAccountsPayable.class);
+		Query query = em.createQuery("select count(a) from AccountPayable a inner join a.supplier s where s.id = :id");
 		query.setParameter("id", id);
-		TotalOfAccountsPayable totalOfAccountsPayable = (TotalOfAccountsPayable) query.getSingleResult();
-		return totalOfAccountsPayable.getTotal() > 0;
+		Long count = (Long) query.getSingleResult();
+		return count > 0;
 	}
 	
-	private static class TotalOfAccountsPayable {
-		private int total;
-		
-		@SuppressWarnings("unused")
-		public TotalOfAccountsPayable(int total) { this.total = total; }
-		
-		public int getTotal() {
-			return total;
-		}
-	}
 }

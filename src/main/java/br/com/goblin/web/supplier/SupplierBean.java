@@ -2,10 +2,13 @@ package br.com.goblin.web.supplier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
@@ -77,7 +80,7 @@ public class SupplierBean {
 			dao.remove(id);
 		}
 		
-		return "/supplier/list.xhtml?faces-redirect=true";
+		return "/supplier/list.xhtml";
 		
 	}
 	
@@ -92,8 +95,12 @@ public class SupplierBean {
 	public List<SelectItem> getTaxPayerTypes() {
 		List<SelectItem> items = new ArrayList<>();
 		
+		FacesContext context = FacesContext.getCurrentInstance();
+		Application application = context.getApplication();
+		ResourceBundle msg = application.getResourceBundle(context, "msg");
+		
 		for (TaxPayerType type : TaxPayerType.values()) {
-			items.add(new SelectItem(type, type.getDescription()));
+			items.add(new SelectItem(type, msg.getString(type.getI18nMessage())));
 		}
 		
 		return items;

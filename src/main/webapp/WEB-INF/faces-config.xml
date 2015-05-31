@@ -5,6 +5,20 @@
             http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
 		version="2.1">
 
+	
+	<application>
+		<locale-config>
+			<default-locale>en_US</default-locale>
+			<supported-locale>en_US</supported-locale>
+			<supported-locale>pt_BR</supported-locale>
+		</locale-config>
+		
+		<resource-bundle>
+			<base-name>br.com.goblin.messages</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
+	
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>login</from-outcome>
