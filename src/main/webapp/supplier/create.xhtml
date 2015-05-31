@@ -1,6 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:gb="http://java.sun.com/jsf/composite/components"
 	xmlns:stella="http://stella.caelum.com.br/faces2">
 	
 	<h:body>
@@ -10,42 +11,43 @@
 		
 		<h:form>
 		
-			<h:panelGrid columns="2">
+			<h:panelGrid columns="1">
 				
-				<h:outputLabel value="Name" for="name"/>
-				<h:panelGrid columns="2">
-					<h:inputText id="name" value="#{supplierBean.supplier.name}" 
-						required="true" requiredMessage="#{msg['supplier.name.required']}"/>
-					<h:message for="name"/>
-				</h:panelGrid>
+				<gb:input id="name" 
+					value="#{supplierBean.supplier.name}" 
+					label="Name"
+					required="true" 
+					requiredMessage="#{msg['supplier.name.required']}"/>
+
+				<gb:input id="regularDayOfPayment"
+					value="#{supplierBean.supplier.regularDayOfPayment}"
+					label="Regular Day of Payment"
+					required="true"
+					requiredMessage="#{msg['supplier.regularday.required']}" />
+
+				<h:panelGroup>
+					<h:outputLabel value="Tax Payer Type" for="taxPayerType"/>
+					<h:selectOneRadio id="taxPayerType"
+						value="#{supplierBean.supplier.taxPayerType}"
+						layout="lineDirection">
+						<f:selectItems value="#{supplierBean.taxPayerTypes}" />					
+						<f:ajax render="taxPayerNumber"/>
+					</h:selectOneRadio>
+				</h:panelGroup>				
 				
-				<h:outputLabel value="Regular Day of Payment" for="regularDayOfPayment"/>
-				<h:panelGrid columns="2">
-					<h:inputText id="regularDayOfPayment" value="#{supplierBean.supplier.regularDayOfPayment}" 
-						required="true" requiredMessage="#{msg['supplier.regularday.required']}"/>
-					<h:message for="regularDayOfPayment"/>
-				</h:panelGrid>
-				
-				<h:outputLabel value="Tax Payer Type" for="taxPayerType"/>
-				<h:selectOneRadio id="taxPayerType"
-					value="#{supplierBean.supplier.taxPayerType}"
-					layout="lineDirection">
-					<f:selectItems value="#{supplierBean.taxPayerTypes}" />					
-					<f:ajax render="taxPayerNumber"/>
-				</h:selectOneRadio>
-				
-				
-				<h:outputLabel value="Tax Payer Number" for="taxPayerNumber"/>
-				<h:panelGrid columns="2">
-					<h:inputText id="taxPayerNumber" 
-						value="#{supplierBean.supplier.taxPayerNumber}"
-						maxlength="#{supplierBean.supplier.taxPayerNumberSize}"
-						required="true" requiredMessage="#{msg['supplier.tax_payer_number.required']}">
-						<f:validator validatorId="StellaCPFValidator" disabled="#{!supplierBean.supplier.corporate}"/>
-						<f:validator validatorId="StellaCNPJValidator" disabled="#{supplierBean.supplier.corporate}"/>
-					</h:inputText>
-					<h:message for="taxPayerNumber" />
-				</h:panelGrid>
+				<h:panelGroup>
+					<h:outputLabel value="Tax Payer Number" for="taxPayerNumber"/>
+					<h:panelGrid columns="2">
+						<h:inputText id="taxPayerNumber" 
+							value="#{supplierBean.supplier.taxPayerNumber}"
+							maxlength="#{supplierBean.supplier.taxPayerNumberSize}"
+							required="true" requiredMessage="#{msg['supplier.tax_payer_number.required']}">
+							<f:validator validatorId="StellaCPFValidator" disabled="#{!supplierBean.supplier.corporate}"/>
+							<f:validator validatorId="StellaCNPJValidator" disabled="#{supplierBean.supplier.corporate}"/>
+						</h:inputText>
+						<h:message for="taxPayerNumber" />
+					</h:panelGrid>
+				</h:panelGroup>
 				
 			</h:panelGrid>
 			
