@@ -5,27 +5,28 @@
 	
 	<cc:interface>
 		<cc:attribute name="label" required="true" />
-		<cc:attribute name="id" required="true" />
 		<cc:attribute name="value" required="true" />
-		<cc:attribute name="maxlength" required="false" />
+		<cc:attribute name="maxlength" required="false" default="200" />
 		<cc:attribute name="required" required="false" />
 		<cc:attribute name="requiredMessage" required="false" />
 	</cc:interface>
 	
 	<cc:implementation>
-		<h:outputLabel value="#{cc.attrs.label}" for="#{cc.attrs.id}"/>
-		<h:panelGrid columns="2">
-		
-			<h:inputText id="#{cc.attrs.id}" 
-				value="#{cc.attrs.value}"
-				maxlength="#{cc.attrs.maxlength}"
-				required="#{cc.attrs.required}" requiredMessage="#{cc.attrs.requiredMessage}">
-				<cc:insertChildren/>
-			</h:inputText>
+		<div id="#{cc.clientId}">
+			<h:outputLabel value="#{cc.attrs.label}" for="#{cc.attrs.id}"/>
+			<h:panelGrid columns="2">
 			
-			<h:message for="#{cc.attrs.id}" />
-			
-		</h:panelGrid>
+				<h:inputText id="#{cc.attrs.id}" 
+					value="#{cc.attrs.value}"
+					maxlength="#{cc.attrs.maxlength}"
+					required="#{cc.attrs.required}" requiredMessage="#{cc.attrs.requiredMessage}">
+					<cc:insertChildren/>
+				</h:inputText>
+				
+				<h:message for="#{cc.attrs.id}" />
+				
+			</h:panelGrid>
+		</div>
 	</cc:implementation>
 	
 </html>
