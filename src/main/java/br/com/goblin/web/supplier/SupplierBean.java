@@ -1,5 +1,6 @@
 package br.com.goblin.web.supplier;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -8,7 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
@@ -22,7 +22,12 @@ import br.com.goblin.web.faces.FacesUtils;
 
 @ManagedBean
 @ViewScoped
-public class SupplierBean {
+public class SupplierBean implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private List<Supplier> suppliers;
 	

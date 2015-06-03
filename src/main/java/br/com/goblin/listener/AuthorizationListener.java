@@ -15,18 +15,19 @@ public class AuthorizationListener implements PhaseListener {
 	@Override
 	public void afterPhase(PhaseEvent evt) {
 		FacesContext context = evt.getFacesContext();
-		String viewId = context.getViewRoot().getViewId();
-		
-		if (Pattern.matches(PROTECTED_URL, viewId)) {
-			Object user = context.getExternalContext().getSessionMap().get("user");
+		if (context.getViewRoot() != null) {
+			String viewId = context.getViewRoot().getViewId();
 			
-			if (user == null) {
-				NavigationHandler handler = context.getApplication().getNavigationHandler();
-				handler.handleNavigation(context, null, "login");
+			if (Pattern.matches(PROTECTED_URL, viewId)) {
+				Object user = context.getExternalContext().getSessionMap().get("user");
+				
+				if (user == null) {
+					NavigationHandler handler = context.getApplication().getNavigationHandler();
+					handler.handleNavigation(context, null, "login");
+				}
+				
 			}
-			
 		}
-		
 	}
 
 	@Override
