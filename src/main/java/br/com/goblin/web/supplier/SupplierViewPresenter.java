@@ -1,10 +1,13 @@
 package br.com.goblin.web.supplier;
 
+import java.io.Serializable;
+
 import br.com.goblin.domain.account.TaxPayerType;
 import br.com.goblin.domain.supplier.Supplier;
 
-public class SupplierViewPresenter {
-	
+public class SupplierViewPresenter implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private String name;
 	
 	private Integer regularDayOfPayment;

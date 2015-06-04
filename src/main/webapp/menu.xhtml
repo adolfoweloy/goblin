@@ -7,21 +7,20 @@
 	</h:head>
 	
 	<h:body>
-		
-		<ui:composition>
-			<h:form>
-				<p:menubar>
-					<p:submenu label="Registry"	>
-						<p:menuitem value="Supplier" url="/supplier/list.xhtml"/>
-					</p:submenu>
-					
-					<p:submenu label="Accounts">
-						<p:menuitem value="Accounts Payable" url="/accounts-payable/list.xhtml"/>
-					</p:submenu>
-				</p:menubar>
-				
+				<h:form style="display: inline-block">
+			
+			<p:menubar>
+				<p:submenu label="Registry">
+					<p:menuitem value="Supplier" url="/supplier/list.xhtml" />
+				</p:submenu>
+	
+				<p:submenu label="Accounts">
+					<p:menuitem value="Accounts Payable"
+						url="/accounts-payable/list.xhtml" />
+				</p:submenu>
+			</p:menubar>
 			</h:form>
-		</ui:composition>
+	
 	</h:body>
 	
 </html>

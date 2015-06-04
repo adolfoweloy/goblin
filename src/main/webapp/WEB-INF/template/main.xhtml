@@ -1,27 +1,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
-	
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
 	<h:head>
 		<title>Goblin - finance management</title>
 	</h:head>
 	
 	<h:body>
-		<div id="menu">
-			<ui:include src="/menu.xhtml" />
-		</div>
-		
+	
+		<header>
+			<ui:include src="/menu.xhtml"></ui:include>
+		</header>
+	
 		<div id="body">
 			<ui:insert name="title"></ui:insert>
 			<ui:insert name="body"></ui:insert>
 		</div>
-		
-		<hr/>
-		<div id="footer">
-			<ui:include src="/footer.xhtml" />
-		</div>
-		
-	</h:body>
 	
+		<hr />
+	
+		<footer>
+			<div id="footer">
+				<ui:include src="/footer.xhtml" />
+			</div>
+		</footer>
+	
+	</h:body>
+
 </html>

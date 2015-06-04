@@ -1,5 +1,6 @@
 package br.com.goblin.web.supplier;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -22,11 +23,12 @@ import br.com.goblin.web.faces.FacesUtils;
 
 @ManagedBean
 @ViewScoped
-public class SupplierBean {
+public class SupplierBean implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private List<Supplier> suppliers;
 	
-	private SupplierDAO dao;
+	private transient SupplierDAO dao;
 	
 	private SupplierViewPresenter supplier = new SupplierViewPresenter();
 	

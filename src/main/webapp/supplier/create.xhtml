@@ -48,8 +48,8 @@
 						<gb:input id="taxPayerNumber" label="Tax Payer Number" value="#{supplierBean.supplier.taxPayerNumber}"
 							maxlength="#{supplierBean.supplier.taxPayerNumberSize}"
 							required="true" requiredMessage="#{msg['supplier.tax_payer_number.required']}">
-							<f:validator for="taxPayerNumber" validatorId="StellaCPFValidator" disabled="#{!supplierBean.supplier.corporate}"/>
-							<f:validator for="taxPayerNumber" validatorId="StellaCNPJValidator" disabled="#{supplierBean.supplier.corporate}"/>
+							<f:validator  validatorId="StellaCPFValidator" disabled="#{!supplierBean.supplier.corporate}"/>
+							<f:validator  validatorId="StellaCNPJValidator" disabled="#{supplierBean.supplier.corporate}"/>
 						</gb:input>
 						
 					</h:panelGrid>
