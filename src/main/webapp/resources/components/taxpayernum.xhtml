@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:cc="http://java.sun.com/jsf/composite"
+	xmlns:stella="http://stella.caelum.com.br/faces2">
+
+<cc:interface>
+	<cc:attribute name="corporate" type="java.lang.Boolean" />
+
+	<cc:attribute name="label" required="true" />
+	<cc:attribute name="value" required="true" />
+	<cc:attribute name="maxlength" required="true" />
+	<cc:attribute name="required" required="false" />
+	<cc:attribute name="requiredMessage" required="false" />
+
+</cc:interface>
+
+<cc:implementation>
+
+	<div id="#{cc.clientId}">
+		<h:outputLabel value="#{cc.attrs.label}" for="#{cc.attrs.id}" />
+		<h:panelGrid columns="2">
+
+			<h:inputText id="#{cc.attrs.id}" value="#{cc.attrs.value}"
+				maxlength="#{cc.attrs.maxlength}" required="#{cc.attrs.required}"
+				requiredMessage="#{cc.attrs.requiredMessage}">
+				<f:validator for="#{cc.attrs.id}" validatorId="StellaCPFValidator"
+					disabled="#{!cc.attrs.corporate}" />
+				<f:validator for="#{cc.attrs.id}" validatorId="StellaCNPJValidator"
+					disabled="#{cc.attrs.corporate}" />
+			</h:inputText>
+
+			<h:message for="#{cc.attrs.id}" />
+
+		</h:panelGrid>
+	</div>
+
+</cc:implementation>
+
+</html>

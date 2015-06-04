@@ -22,7 +22,6 @@
 				<h:form prependId="false">
 				
 					<h:panelGrid columns="1">
-						
 						<gb:input id="name" 
 							value="#{supplierBean.supplier.name}" 
 							label="Name"
@@ -45,12 +44,11 @@
 							</h:selectOneRadio>
 						</h:panelGroup>				
 						
-						<gb:input id="taxPayerNumber" label="Tax Payer Number" value="#{supplierBean.supplier.taxPayerNumber}"
+						<gb:taxpayernum id="taxPayerNumber" label="Tax Payer Number" 
+							value="#{supplierBean.supplier.taxPayerNumber}"
+							corporate="#{supplierBean.supplier.corporate}"
 							maxlength="#{supplierBean.supplier.taxPayerNumberSize}"
-							required="true" requiredMessage="#{msg['supplier.tax_payer_number.required']}">
-							<f:validator  validatorId="StellaCPFValidator" disabled="#{!supplierBean.supplier.corporate}"/>
-							<f:validator  validatorId="StellaCNPJValidator" disabled="#{supplierBean.supplier.corporate}"/>
-						</gb:input>
+							required="true" requiredMessage="#{msg['supplier.tax_payer_number.required']}" />
 						
 					</h:panelGrid>
 					
