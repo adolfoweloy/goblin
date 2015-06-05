@@ -1,46 +1,59 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
-	
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
 	<h:body>
-		<h:outputText value="Accounts Payable"/>
-	
+
+	<ui:composition template="/WEB-INF/template/main.xhtml">
+		<ui:define name="title">
+			<h:outputText value="#{msg['payable.title']}"/>
+		</ui:define>
+
+		<ui:define name="body">
 		<h:messages/>
-			
+
 		<h:form>
-		
+
 			<h:panelGrid columns="2">
-				
-				<h:outputLabel value="Supplier" for="supplier"/>
+
+				<h:outputLabel value="#{msg['payable.supplier.label']}" for="supplier"/>
 				<h:selectOneMenu id="supplier" value="#{accountsPayableBean.accountPayable.supplier}"
-					disabled="#{accountsPayableBean.accountPayable.canEditSupplier}">
+					disabled="#{accountsPayableBean.accountPayable.canEditSupplier}"
+					label="#{msg['payable.supplier.label']}">
 					<f:validateRequired />
-					<f:selectItem itemLabel="Select one supplier" noSelectionOption="true"/>
+					<f:selectItem itemLabel="#{msg['payable.supplier.select']}" noSelectionOption="true"/>
 					<f:selectItems value="#{accountsPayableBean.suppliers}" var="supplier"
 						itemLabel="#{supplier.name}" itemValue="#{supplier}">
 					</f:selectItems>
 					<f:ajax render="dueDate" />
 				</h:selectOneMenu>
 
-				<h:outputLabel value="Due Date" for="dueDate"/>
-				<h:inputText id="dueDate" value="#{accountsPayableBean.accountPayable.dueDate.time}" 
-					required="true" requiredMessage="preencher a data de vencimento" >
-					<f:convertDateTime type="date" dateStyle="medium" locale="pt_BR" />
-				</h:inputText>
-				
-				<h:outputLabel value="Value" for="value"/>
+				<h:outputLabel value="#{msg['payable.duedate.label']}" for="dueDate"/>
+				<p:calendar id="dueDate" 
+					value="#{accountsPayableBean.accountPayable.dueDate.time}" showOn="button"
+					label="#{msg['payable.duedate.label']}">
+					<f:validateRequired/>
+                </p:calendar>
+
+				<h:outputLabel value="#{msg['payable.value.label']}" for="value"/>
 				<h:inputText id="value" 
 					value="#{accountsPayableBean.accountPayable.value}"
-					size="20" maxlength="6"
-					required="true" requiredMessage="preencher o valor da conta">
+					size="20" maxlength="6" label="#{msg['payable.value.label']}">
+					<f:validateRequired/>
 					<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2"/>
 				</h:inputText>
-				
+
 			</h:panelGrid>
-							
-			<h:commandButton action="#{accountsPayableBean.save}" value="Save"/>
-			<h:commandButton action="#{accountsPayableBean.cancel}" immediate="true" value="Cancel"/>
+
+			<h:commandButton action="#{accountsPayableBean.save}" value="#{msg['button.save']}"/>
+			<h:commandButton action="#{accountsPayableBean.cancel}" immediate="true" value="#{msg['button.cancel']}"/>
 		</h:form>
+	   </ui:define>
+	</ui:composition>
+	
+
 		
 	</h:body>
 	
