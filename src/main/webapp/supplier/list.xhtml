@@ -43,6 +43,11 @@
 
 					<h:column>
 						<f:facet name="header">Actions</f:facet>
+
+						<h:commandLink action="#{supplierBean.edit(supplier.id)}">
+							<h:graphicImage library="default" name="images/edit.png"/>
+						</h:commandLink>
+
 						<h:commandLink action="#{supplierBean.delete(supplier.id)}">
 							<h:graphicImage library="default" name="images/delete.png" />
 						</h:commandLink>

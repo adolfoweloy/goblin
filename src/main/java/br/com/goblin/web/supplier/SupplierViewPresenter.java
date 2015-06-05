@@ -16,11 +16,21 @@ public class SupplierViewPresenter implements Serializable {
 	
 	private TaxPayerType taxPayerType;
 
+	private Long id;
+
+	public SupplierViewPresenter(Long id) {
+		this.id = id;
+	}
+	
 	public SupplierViewPresenter() {
 		// setting default values
 		taxPayerType = TaxPayerType.INDIVIDUAL;
 	}
 
+	public Long getId() {
+		return id;
+	}
+	
 	public String getName() {
 		return name;
 	}

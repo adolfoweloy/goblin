@@ -58,6 +58,18 @@ public class SupplierBean implements Serializable {
 		return "list";
 	}
 	
+	public String edit(Long id) {
+		Supplier supplier = dao.findById(id);
+		
+		this.supplier = new SupplierViewPresenter(id);
+		this.supplier.setName(supplier.getName());
+		this.supplier.setRegularDayOfPayment(supplier.getRegularDayOfPayment());
+		this.supplier.setTaxPayerNumber(supplier.getTaxPayerNumber());
+		this.supplier.setTaxPayerType(supplier.getTaxPayerType());
+		
+		return "create";
+	}
+	
 	public String delete(Long id) {
 		ConfirmationBean confirmBean = FacesUtils.findBean(ConfirmationBean.BEAN_NAME);
 		confirmBean.setMessage("Do you want to remove selected supplier?");
