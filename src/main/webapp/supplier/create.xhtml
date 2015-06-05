@@ -4,63 +4,79 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:gb="http://java.sun.com/jsf/composite/components"
 	xmlns:stella="http://stella.caelum.com.br/faces2">
-	
+
 	<h:head>
 	</h:head>
-	
+
 	<h:body>
-	
+
 		<ui:composition template="/WEB-INF/template/main.xhtml">
 			<ui:define name="title">
 				<h:outputText value="Supplier"/>
 			</ui:define>
-			
+
 			<ui:define name="body">
-			
+
 				<h:messages globalOnly="true"/>
-				
+
 				<h:form prependId="false">
-				
-					<h:panelGrid columns="1">
-						<gb:input id="name" 
-							value="#{supplierBean.supplier.name}" 
-							label="Name"
-							required="true" 
-							requiredMessage="#{msg['supplier.name.required']}"/>
-		
-						<gb:input id="regularDayOfPayment"
-							value="#{supplierBean.supplier.regularDayOfPayment}"
-							label="Regular Day of Payment"
-							required="true"
-							requiredMessage="#{msg['supplier.regularday.required']}" />
-		
+
+					<h:panelGrid columns="2">
+
+						<h:outputLabel value="Name" for="name"/>
+
 						<h:panelGroup>
-							<h:outputLabel value="Tax Payer Type" for="taxPayerType"/>
-							<h:selectOneRadio id="taxPayerType"
-								value="#{supplierBean.supplier.taxPayerType}"
-								layout="lineDirection">
-								<f:selectItems value="#{supplierBean.taxPayerTypes}" />					
-								<f:ajax render="taxPayerNumber"/>
-							</h:selectOneRadio>
-						</h:panelGroup>				
-						
-						<gb:taxpayernum id="taxPayerNumber" label="Tax Payer Number" 
-							value="#{supplierBean.supplier.taxPayerNumber}"
-							corporate="#{supplierBean.supplier.corporate}"
-							maxlength="#{supplierBean.supplier.taxPayerNumberSize}"
-							required="true" requiredMessage="#{msg['supplier.tax_payer_number.required']}" />
-						
+							<h:inputText id="name" 
+								value="#{supplierBean.supplier.name}"
+								required="true" requiredMessage="#{msg['supplier.name.required']}"/>
+							<h:message for="name" />
+						</h:panelGroup>
+
+
+						<h:outputLabel value="Regular Day of Payment" for="regularDayOfPayment"/>
+
+						<h:panelGroup>
+							<h:inputText id="regularDayOfPayment" value="#{supplierBean.supplier.regularDayOfPayment}"
+								required="true" requiredMessage="#{msg['supplier.regularday.required']}"/>
+							<h:message for="regularDayOfPayment"/>
+						</h:panelGroup>
+
+
+
+						<h:outputLabel value="Tax Payer Type" for="taxPayerType"/>
+
+						<h:selectOneRadio id="taxPayerType"
+							value="#{supplierBean.supplier.taxPayerType}"
+							layout="lineDirection">
+							<f:selectItems value="#{supplierBean.taxPayerTypes}" />
+							<f:ajax render="taxPayerNumber"/>
+						</h:selectOneRadio>
+
+
+						<h:outputLabel value="Tax Payer Number" for="taxPayerNumber"/>
+
+						<h:panelGroup>
+							<h:inputText id="taxPayerNumber" value="#{supplierBean.supplier.taxPayerNumber}"
+								maxlength="#{supplierBean.supplier.taxPayerNumberSize}"
+								required="true" requiredMessage="#{msg['supplier.tax_payer_number.required']}">
+								<f:validator for="taxPayerNumber" validatorId="StellaCPFValidator"
+									disabled="#{!supplierBean.supplier.corporate}" />
+								<f:validator for="taxPayerNumber" validatorId="StellaCNPJValidator"
+									disabled="#{supplierBean.supplier.corporate}" />
+							</h:inputText>
+
+							<h:message for="taxPayerNumber"/>
+						</h:panelGroup>
+
 					</h:panelGrid>
-					
-									
+
 					<h:commandButton action="#{supplierBean.save}" value="Save"/>
 					<h:commandButton action="#{supplierBean.cancel}" value="Cancel" immediate="true"/>
 				</h:form>
-			
+
 			</ui:define>
 		</ui:composition>
-		
-		
+
 	</h:body>
-	
+
 </html>
