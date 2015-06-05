@@ -26,9 +26,13 @@ public class SupplierViewPresenter implements Serializable {
 		// setting default values
 		taxPayerType = TaxPayerType.INDIVIDUAL;
 	}
-
+	
 	public Long getId() {
 		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	public String getName() {
@@ -73,6 +77,7 @@ public class SupplierViewPresenter implements Serializable {
 	
 	public Supplier buildSupplier() {
 		Supplier supplier = new Supplier(name, taxPayerNumber, taxPayerType);
+		supplier.setId(id);
 		
 		if (regularDayOfPayment != null) {
 			supplier.setRegularDayOfPayment(regularDayOfPayment);

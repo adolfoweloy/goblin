@@ -10,25 +10,30 @@ import br.com.goblin.persistence.JpaUtil;
 
 public class SupplierDAO {
 
+	private EntityManager em;
+	
+	public SupplierDAO() {
+		em = JpaUtil.getEntityManager();
+	}
+	
 	public List<Supplier> list() {
-		return JpaUtil.getEntityManager().createQuery("select s from Supplier s order by s.regularDayOfPayment", Supplier.class).getResultList();
+		return em.createQuery("select s from Supplier s order by s.regularDayOfPayment", Supplier.class).getResultList();
 	}
 
 	public void save(Supplier supplier) {
-		JpaUtil.getEntityManager().persist(supplier);
+		em.persist(supplier);
 	}
 
 	public void remove(Long id) {
-		Supplier supplier = JpaUtil.getEntityManager().find(Supplier.class, id);
-		JpaUtil.getEntityManager().remove(supplier);
+		Supplier supplier = em.find(Supplier.class, id);
+		em.remove(supplier);
 	}
 
 	public Supplier findById(Long id) {
-		return JpaUtil.getEntityManager().find(Supplier.class, id);
+		return em.find(Supplier.class, id);
 	}
 	
 	public boolean hasAccountsPayable(Long id) {
-		EntityManager em = JpaUtil.getEntityManager();
 		Query query = em.createQuery("select count(a) from AccountPayable a inner join a.supplier s where s.id = :id");
 		query.setParameter("id", id);
 		Long count = (Long) query.getSingleResult();

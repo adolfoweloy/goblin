@@ -9,7 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
@@ -21,7 +20,6 @@ import br.com.goblin.web.dialog.ConfirmationBean.ConfirmationAction;
 import br.com.goblin.web.faces.FacesUtils;
 
 @ManagedBean
-@ViewScoped
 public class SupplierBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 

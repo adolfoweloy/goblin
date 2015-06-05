@@ -20,7 +20,9 @@
 				<h:messages globalOnly="true"/>
 
 				<h:form prependId="false">
-
+					
+					<h:inputHidden value="#{supplierBean.supplier.id}"/>
+					
 					<h:panelGrid columns="2">
 
 						<h:outputLabel value="Name" for="name"/>
