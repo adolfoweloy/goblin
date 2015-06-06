@@ -25,8 +25,8 @@ public class AccountsPayableBean {
 	
 	private AccountPayableViewPresenter accountPayable = new AccountPayableViewPresenter();
 
-	@ManagedProperty(value="#{expensesBean}")
-	private ExpensesBean expensesBean;
+	@ManagedProperty(value="#{paymentBean}")
+	private PaymentBean paymentBean;
 	
 	@PostConstruct
 	public void init() {
@@ -79,7 +79,7 @@ public class AccountsPayableBean {
 	
 	public String pay(Long id) {
 		AccountPayable payable = accounts.findBy(id);
-		return expensesBean.payment(payable);
+		return paymentBean.payment(payable);
 	}
 	
 	public List<Supplier> getSuppliers() {
@@ -103,7 +103,7 @@ public class AccountsPayableBean {
 		this.accountPayable = accountPayable;
 	}
 
-	public void setExpensesBean(ExpensesBean expensesBean) {
-		this.expensesBean = expensesBean;
+	public void setPaymentBean(PaymentBean paymentBean) {
+		this.paymentBean = paymentBean;
 	}
 }
