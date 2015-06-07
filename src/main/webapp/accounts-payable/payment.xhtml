@@ -15,37 +15,40 @@
 				
 				<h:panelGrid columns="8">
 					<h:outputText value="Supplier"/>
-					<h:outputText value="#{paymentBean.payment.supplier.name}"/>
+					<h:outputText value="#{paymentBean.payment.payable.supplier.name}"/>
 					
 					<h:outputText value="Due Date"/>
-					<h:outputText value="#{paymentBean.payment.dueDate.time}">
+					<h:outputText value="#{paymentBean.payment.payable.dueDate.time}">
 						<f:convertDateTime dateStyle="default" type="date"/>
 					</h:outputText>
 					
 					<h:outputText value="Value"/>
-					<h:outputText value="#{paymentBean.payment.value}"/>
+					<h:outputText value="#{paymentBean.payment.payable.value}"/>
 					
 					<h:outputText value="Payed"/>
-					<h:selectManyCheckbox value="#{paymentBean.payment.payed}" disabled="true"/>
+					<h:selectManyCheckbox value="#{paymentBean.payment.payable.payed}" disabled="true">
+                                            <f:selectItem itemLabel="Payed" itemValue="#{paymentBean.payment.payable.payed}"/>
+                                        </h:selectManyCheckbox>
 				</h:panelGrid>
 		
 				<h:form prependId="false" id="formPayment">
-				
-					<h:inputHidden value="#{paymentBean.payment.accountPayableId}"/>
-					
-					<h:panelGrid columns="2">
-						<h:outputLabel value="Payment value"/>
-						<h:inputText value="#{paymentBean.payment.paymentValue}"/>
-						
-						<h:outputLabel value="Payment date"/>
-						<p:calendar id="paymentDate" 
-							value="#{paymentBean.payment.dateOfPayment.time}" showOn="button">
-								<f:validateRequired/>
-               			</p:calendar>
-					</h:panelGrid>
-					
-					<h:commandButton action="#{paymentBean.payAccount}" value="Pay account"/>
-					<h:button value="#{msg['button.cancel']}" outcome="/accounts-payable/list.xhtml"/>
+	                <h:inputHidden id="payable" value="#{paymentBean.payment.payable}"/>
+	
+	                <h:panelGrid columns="2">
+	                    <h:outputLabel value="Payment value"/>
+	                    <h:inputText value="#{paymentBean.payment.paymentValue}">
+	                        <f:validateRequired/>
+	                    </h:inputText>
+	
+	                    <h:outputLabel value="Payment date"/>
+	                    <p:calendar id="paymentDate" 
+	                            value="#{paymentBean.payment.dateOfPayment.time}" showOn="button">
+	                                <f:validateRequired/>
+	                    </p:calendar>
+	                </h:panelGrid>
+	
+	                <h:commandButton action="#{paymentBean.payAccount}" value="Pay account"/>
+	                <h:button value="#{msg['button.cancel']}" outcome="/accounts-payable/list.xhtml"/>
 				</h:form>
 				
 				

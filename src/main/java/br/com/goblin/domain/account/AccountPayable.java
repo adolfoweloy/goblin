@@ -38,9 +38,9 @@ public class AccountPayable {
 	
 	@Column(name = "flag_payed")
 	private Boolean payed;
-	
+
 	@Deprecated // JPA purposes only
-	AccountPayable() { }
+	public AccountPayable() { }
 
 	public AccountPayable(Supplier supplier, Calendar dueDate, BigDecimal value) {
 		this.supplier = supplier;
@@ -68,6 +68,10 @@ public class AccountPayable {
 		return value;
 	}
 
+        public void setValue(BigDecimal value) {
+            this.value = value;
+        }
+        
 	public Boolean getPayed() {
 		return payed;
 	}

@@ -9,7 +9,7 @@ import br.com.goblin.persistence.JpaUtil;
 
 public class AccountsPayableDAO {
 
-	private EntityManager em;
+	private final EntityManager em;
 	
 	public AccountsPayableDAO() {
 		em = JpaUtil.getEntityManager();

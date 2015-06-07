@@ -91,7 +91,7 @@ public class AccountsPayableBean implements Serializable {
 	
 	public String pay(Long id) {
 		AccountPayable payable = accounts.findBy(id);
-		return paymentBean.payment(payable);
+		return paymentBean.forward(payable);
 	}
 	
 	public List<Supplier> getSuppliers() {
