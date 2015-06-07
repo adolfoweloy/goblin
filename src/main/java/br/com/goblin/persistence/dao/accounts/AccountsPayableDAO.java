@@ -25,7 +25,11 @@ public class AccountsPayableDAO {
 	}
 
 	public void save(AccountPayable payable) {
-		em.persist(payable);
+            if (payable.getId() == null) {
+                em.persist(payable);
+            } else {
+                em.merge(payable);
+            }
 	}
 
 	public AccountPayable findBy(Long id) {

@@ -11,7 +11,7 @@ public class AccountPayableViewPresenter {
 
 	private Supplier supplier;
 	
-	private Calendar dueDate;
+	private Date dueDate;
 	
 	private BigDecimal value;
 
@@ -23,6 +23,18 @@ public class AccountPayableViewPresenter {
 		this.id = id;
 	}
 	
+        /**
+         * Returns the id of current account payable
+         * @return Long
+         */
+        public Long getId() {
+            return id;
+        }
+        
+        public void setId(Long id) {
+            this.id = id;
+        }
+        
 	public Supplier getSupplier() {
 		return supplier;
 	}
@@ -31,7 +43,7 @@ public class AccountPayableViewPresenter {
 		this.supplier = supplier;
 	}
 
-	public Calendar getDueDate() {
+	public Date getDueDate() {
 
 		if (id != null) {
 			return dueDate;
@@ -42,13 +54,13 @@ public class AccountPayableViewPresenter {
 			Calendar instance = Calendar.getInstance();
 			instance.setTime(new Date());
 			instance.set(Calendar.DAY_OF_MONTH, regularDayOfPayment);
-			dueDate = instance;
+			dueDate = instance.getTime();
 		}
 		
 		return dueDate;
 	}
 
-	public void setDueDate(Calendar dueDate) {
+	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
 
@@ -65,9 +77,12 @@ public class AccountPayableViewPresenter {
 	}
 	
 	public AccountPayable build() {
-		AccountPayable payable = new AccountPayable(supplier, dueDate, value);
-		payable.setId(id);
-		return payable;
+            Calendar due = Calendar.getInstance();
+            due.setTime(this.dueDate);
+            
+            AccountPayable payable = new AccountPayable(supplier, due, value);
+            payable.setId(id);
+            return payable;
 	}
 	
 }

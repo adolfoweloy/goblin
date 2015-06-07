@@ -1,11 +1,14 @@
 package br.com.goblin.web.payable;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 
+import lombok.Getter;
+import lombok.Setter;
 import br.com.goblin.domain.account.AccountPayable;
 import br.com.goblin.domain.supplier.Supplier;
 import br.com.goblin.persistence.dao.accounts.AccountsPayableDAO;
@@ -15,13 +18,18 @@ import br.com.goblin.web.dialog.ConfirmationBean.ConfirmationAction;
 import br.com.goblin.web.faces.FacesUtils;
 
 @ManagedBean
-public class AccountsPayableBean {
+public class AccountsPayableBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private List<AccountPayable> accountsPayable;
 	
 	private AccountsPayableDAO accounts;
 	
 	private SupplierDAO suppliers;
+	
+	@Getter @Setter
+	private boolean editing;
 	
 	private AccountPayableViewPresenter accountPayable = new AccountPayableViewPresenter();
 
@@ -35,6 +43,8 @@ public class AccountsPayableBean {
 	}
 	
 	public String create() {
+		setEditing(false);
+		
 		return "create";
 	}
 	
@@ -42,9 +52,11 @@ public class AccountsPayableBean {
 		AccountPayable payable = accounts.findBy(id);
 		
 		accountPayable = new AccountPayableViewPresenter(id);
-		accountPayable.setDueDate(payable.getDueDate());
+		accountPayable.setDueDate(payable.getDueDate().getTime());
 		accountPayable.setSupplier(payable.getSupplier());
 		accountPayable.setValue(payable.getValue());
+		
+		setEditing(true);
 		
 		return "create";
 	}

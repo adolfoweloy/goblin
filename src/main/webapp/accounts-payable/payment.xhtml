@@ -1,13 +1,57 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:body>
-	<h:outputText value="payment" />
-
-
-
-</h:body>
-
+	<h:body>
+	
+		<ui:composition template="/WEB-INF/template/main.xhtml">
+			<ui:define name="title">
+				<h:outputText value="payment" />
+			</ui:define>
+			
+			<ui:define name="body">
+				
+				<h:panelGrid columns="8">
+					<h:outputText value="Supplier"/>
+					<h:outputText value="#{paymentBean.payment.supplier.name}"/>
+					
+					<h:outputText value="Due Date"/>
+					<h:outputText value="#{paymentBean.payment.dueDate.time}">
+						<f:convertDateTime dateStyle="default" type="date"/>
+					</h:outputText>
+					
+					<h:outputText value="Value"/>
+					<h:outputText value="#{paymentBean.payment.value}"/>
+					
+					<h:outputText value="Payed"/>
+					<h:selectManyCheckbox value="#{paymentBean.payment.payed}" disabled="true"/>
+				</h:panelGrid>
+		
+				<h:form prependId="false" id="formPayment">
+				
+					<h:inputHidden value="#{paymentBean.payment.accountPayableId}"/>
+					
+					<h:panelGrid columns="2">
+						<h:outputLabel value="Payment value"/>
+						<h:inputText value="#{paymentBean.payment.paymentValue}"/>
+						
+						<h:outputLabel value="Payment date"/>
+						<p:calendar id="paymentDate" 
+							value="#{paymentBean.payment.dateOfPayment.time}" showOn="button">
+								<f:validateRequired/>
+               			</p:calendar>
+					</h:panelGrid>
+					
+					<h:commandButton action="#{paymentBean.payAccount}" value="Pay account"/>
+					<h:button value="#{msg['button.cancel']}" outcome="/accounts-payable/list.xhtml"/>
+				</h:form>
+				
+				
+			</ui:define>
+		</ui:composition>
+	
+	</h:body>
 
 </html>

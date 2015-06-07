@@ -16,26 +16,29 @@
 
 		<h:form>
 
+			<h:inputHidden id="editing" value="#{accountsPayableBean.editing}"/>
+			<h:inputHidden id="id" value="#{accountsPayableBean.accountPayable.id}"/>
+			
 			<h:panelGrid columns="2">
 
 				<h:outputLabel value="#{msg['payable.supplier.label']}" for="supplier"/>
-				<h:selectOneMenu id="supplier" value="#{accountsPayableBean.accountPayable.supplier}"
-					disabled="#{accountsPayableBean.accountPayable.canEditSupplier}"
-					label="#{msg['payable.supplier.label']}">
-					<f:validateRequired />
-					<f:selectItem itemLabel="#{msg['payable.supplier.select']}" noSelectionOption="true"/>
-					<f:selectItems value="#{accountsPayableBean.suppliers}" var="supplier"
-						itemLabel="#{supplier.name}" itemValue="#{supplier}">
-					</f:selectItems>
-					<f:ajax render="dueDate" />
-				</h:selectOneMenu>
+                                
+                                <h:selectOneMenu id="supplier" value="#{accountsPayableBean.accountPayable.supplier}"
+                                        label="#{msg['payable.supplier.label']}">
+                                        <f:validateRequired />
+                                        <f:selectItem itemLabel="#{msg['payable.supplier.select']}" noSelectionOption="true"/>
+                                        <f:selectItems value="#{accountsPayableBean.suppliers}" var="supplier"
+                                                itemLabel="#{supplier.name}" itemValue="#{supplier}">
+                                        </f:selectItems>
+                                        <f:ajax render="dueDate" />
+                                </h:selectOneMenu>
 
 				<h:outputLabel value="#{msg['payable.duedate.label']}" for="dueDate"/>
 				<p:calendar id="dueDate" 
-					value="#{accountsPayableBean.accountPayable.dueDate.time}" showOn="button"
+					value="#{accountsPayableBean.accountPayable.dueDate}" showOn="button"
 					label="#{msg['payable.duedate.label']}">
 					<f:validateRequired/>
-                </p:calendar>
+                                </p:calendar>
 
 				<h:outputLabel value="#{msg['payable.value.label']}" for="value"/>
 				<h:inputText id="value" 

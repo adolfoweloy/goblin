@@ -21,7 +21,11 @@ public class SupplierDAO {
 	}
 
 	public void save(Supplier supplier) {
-		em.persist(supplier);
+            if (supplier.getId() == null) {
+                em.persist(supplier);
+            } else {
+                em.merge(supplier);
+            }
 	}
 
 	public void remove(Long id) {
