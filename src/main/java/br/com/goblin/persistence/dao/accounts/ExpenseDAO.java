@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.com.goblin.domain.account.AccountPayable;
 import br.com.goblin.domain.account.Expense;
@@ -52,6 +53,11 @@ public class ExpenseDAO {
 		Query query = em.createQuery(sql, Expense.class);
 		query.setParameter("id", id);
 		
+		return query.getResultList();
+	}
+
+	public List<Expense> findAll() {
+		TypedQuery<Expense> query = em.createQuery("select e from Expense e order by e.dateOfPayment", Expense.class);
 		return query.getResultList();
 	}
 }
