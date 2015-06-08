@@ -26,12 +26,13 @@
 					<h:outputText value="#{paymentBean.payment.payable.value}"/>
 					
 					<h:outputText value="Payed"/>
-					<h:selectManyCheckbox value="#{paymentBean.payment.payable.payed}" disabled="true">
-                                            <f:selectItem itemLabel="Payed" itemValue="#{paymentBean.payment.payable.payed}"/>
-                                        </h:selectManyCheckbox>
+					<h:selectBooleanCheckbox value="#{paymentBean.payment.payable.payed}" disabled="true">
+                    	<f:selectItem value="#{paymentBean.payment.payable.payed}"/>
+                    </h:selectBooleanCheckbox>
 				</h:panelGrid>
 		
 				<h:form prependId="false" id="formPayment">
+					<h:inputHidden id="expenseId" value="#{paymentBean.payment.expenseId}"/>
 	                <h:inputHidden id="payable" value="#{paymentBean.payment.payable}"/>
 	
 	                <h:panelGrid columns="2">

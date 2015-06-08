@@ -52,6 +52,8 @@ public class JpaUtil {
 	
 	public static void closeEntityManagerFactory(){
 		closeEntityManager();
-		JpaUtil.factory.close();
+                if (JpaUtil.factory != null) {
+                    JpaUtil.factory.close();
+                }
 	}
 }

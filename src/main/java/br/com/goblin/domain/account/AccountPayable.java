@@ -68,10 +68,14 @@ public class AccountPayable {
 		return value;
 	}
 
-        public void setValue(BigDecimal value) {
-            this.value = value;
-        }
-        
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
+
+    public void setPayed(Boolean payed) {
+		this.payed = payed;
+	}
+    
 	public Boolean getPayed() {
 		return payed;
 	}
@@ -83,6 +87,7 @@ public class AccountPayable {
 			.add("supplier", supplier)
 			.add("dueDate", dueDate)
 			.add("value", value)
+			.add("payed", payed)
 			.toString();
 	}
 }

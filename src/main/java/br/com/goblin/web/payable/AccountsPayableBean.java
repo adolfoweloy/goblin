@@ -31,6 +31,7 @@ public class AccountsPayableBean implements Serializable {
 	@Getter @Setter
 	private boolean editing;
 	
+        @Getter @Setter
 	private AccountPayableViewPresenter accountPayable = new AccountPayableViewPresenter();
 
 	@ManagedProperty(value="#{paymentBean}")
@@ -90,8 +91,7 @@ public class AccountsPayableBean implements Serializable {
 	}
 	
 	public String pay(Long id) {
-		AccountPayable payable = accounts.findBy(id);
-		return paymentBean.forward(payable);
+        return paymentBean.forward(accounts.findBy(id));
 	}
 	
 	public List<Supplier> getSuppliers() {
@@ -105,14 +105,6 @@ public class AccountsPayableBean implements Serializable {
 		}
 		
 		return accountsPayable;
-	}
-
-	public AccountPayableViewPresenter getAccountPayable() {
-		return accountPayable;
-	}
-
-	public void setAccountPayable(AccountPayableViewPresenter accountPayable) {
-		this.accountPayable = accountPayable;
 	}
 
 	public void setPaymentBean(PaymentBean paymentBean) {

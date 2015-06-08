@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.faces.bean.ManagedBean;
+
 import lombok.Getter;
 import lombok.Setter;
 import br.com.goblin.domain.account.AccountPayable;
@@ -16,8 +18,13 @@ import com.google.common.base.MoreObjects;
  *
  * @author aeloy
  */
+@ManagedBean(name = "payment")
 public class PaymentViewPresenter {
 
+	@Getter
+	@Setter
+	private Long expenseId;
+	
     @Getter
     @Setter
     private AccountPayable payable;
@@ -28,10 +35,6 @@ public class PaymentViewPresenter {
     @Getter
     @Setter
     private Calendar dateOfPayment = getCurrentCalendar();
-
-    public PaymentViewPresenter(AccountPayable payable) {
-        this.payable = payable;
-    }
 
     /**
      * Retrieves a default value for payment value regarding previous
@@ -63,6 +66,7 @@ public class PaymentViewPresenter {
      */
     public Expense buildExpense() {
         Expense expense = new Expense();
+        expense.setId(expenseId);
         expense.setAccountPayable(payable);
         expense.setDateOfPayment(dateOfPayment);
         expense.setPaymentValue(paymentValue);

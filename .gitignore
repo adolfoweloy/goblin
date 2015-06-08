@@ -3,5 +3,5 @@ target/
 .settings/
 .project
 .classpath
-
+faces-config.NavData
 nb-configuration.xml

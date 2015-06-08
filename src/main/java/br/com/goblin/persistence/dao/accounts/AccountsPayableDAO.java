@@ -21,7 +21,7 @@ public class AccountsPayableDAO {
 	}
 	
 	public List<AccountPayable> getList() {
-		return em.createQuery("select ap from AccountPayable ap order by ap.dueDate", AccountPayable.class).getResultList();
+		return em.createQuery("select ap from AccountPayable ap where payed != true order by ap.dueDate", AccountPayable.class).getResultList();
 	}
 
 	public void save(AccountPayable payable) {

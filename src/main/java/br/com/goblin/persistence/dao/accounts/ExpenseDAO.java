@@ -5,10 +5,14 @@
  */
 package br.com.goblin.persistence.dao.accounts;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import br.com.goblin.domain.account.AccountPayable;
 import br.com.goblin.domain.account.Expense;
 import br.com.goblin.persistence.JpaUtil;
-import javax.persistence.EntityManager;
 
 /**
  *
@@ -30,6 +34,7 @@ public class ExpenseDAO {
         
         AccountPayable payable = em.find(AccountPayable.class, 
             expense.getAccountPayable().getId());
+        payable.setPayed(true);
         
         expense.setAccountPayable(payable);
         
@@ -40,4 +45,13 @@ public class ExpenseDAO {
         }
         
     }
+
+    @SuppressWarnings("unchecked")
+	public List<Expense> findByAccountPayable(Long id) {
+		String sql = "select e from Expense e join e.accountPayable a where a.id = :id";
+		Query query = em.createQuery(sql, Expense.class);
+		query.setParameter("id", id);
+		
+		return query.getResultList();
+	}
 }
