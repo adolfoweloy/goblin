@@ -15,10 +15,21 @@
 				<h:form id="formExpenses">
 					<h:dataTable value="#{expensesBean.list}" var="entry">
 						<h:column>
+							<f:facet name="header">#{msg['expenses.supplier.label']}</f:facet>
+							#{entry.accountPayable.supplier.name}
+						</h:column>
+						
+						<h:column>
 							<f:facet name="header">#{msg['expenses.paymentValue.label']}</f:facet>
 							#{entry.paymentValue}
 						</h:column>
 
+						<h:column>
+							<f:facet name="header">#{msg['expenses.dateOfPayment.label']}</f:facet>
+							<h:outputText value="#{entry.dateOfPayment.time}">
+								<f:convertDateTime type="date"/>
+							</h:outputText>
+						</h:column>
 					</h:dataTable>
 
 					<h:commandLink id="newExpense" action="#{expensesBean.newExpense}">
