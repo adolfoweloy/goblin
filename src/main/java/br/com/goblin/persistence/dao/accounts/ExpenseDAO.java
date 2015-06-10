@@ -33,8 +33,12 @@ public class ExpenseDAO {
      */
     public void save(Expense expense) {
         
-        AccountPayable payable = em.find(AccountPayable.class, 
-            expense.getAccountPayable().getId());
+        AccountPayable payable = expense.getAccountPayable();
+        AccountsPayableDAO accountPayableDao = new AccountsPayableDAO();
+        accountPayableDao.save(payable);
+        
+//        AccountPayable payable = em.find(AccountPayable.class, 
+//            expense.getAccountPayable().getId());
         payable.setPayed(true);
         
         expense.setAccountPayable(payable);

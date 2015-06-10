@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head></h:head>
+        
+    <h:body>
+        
+        <ui:composition template="/WEB-INF/template/main.xhtml">
+            <ui:define name="title">
+                <h:outputText value="New Expense"/>
+            </ui:define>
+            
+            <ui:define name="body">
+                
+                <h:form id="formExpenses" prependId="false">
+                    
+                    <h:inputHidden id="expenseId" value="#{expensesBean.expense.expenseId}"/>
+                    
+                    <h:panelGrid columns="2">
+                        
+                        <h:selectOneMenu id="supplier" value="#{expensesBean.expense.supplier}"
+                                label="#{msg['payable.supplier.label']}">
+                                <f:validateRequired />
+                                <f:selectItem itemLabel="#{msg['payable.supplier.select']}" noSelectionOption="true"/>
+                                <f:selectItems value="#{accountsPayableBean.suppliers}" var="supplier"
+                                        itemLabel="#{supplier.name}" itemValue="#{supplier}">
+                                </f:selectItems>
+                        </h:selectOneMenu>
+                        
+                        <h:outputLabel value="Date of payment" for="dateOfPayment"/>
+                        <p:calendar id="dateOfPayment" showOn="button"
+                                    value="#{expensesBean.expense.dateOfPayment}">
+                            <f:validateRequired/>
+                        </p:calendar>
+                        
+                        <h:outputLabel value="Payment value" for="paymentValue"/>
+                        <h:inputText id="paymentValue" value="#{expensesBean.expense.paymentValue}">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        
+                    </h:panelGrid>
+                    
+                    <h:commandButton action="#{expensesBean.newExpense()}" value="#{msg.button.save}"/>
+                    <h:commandButton action="#{expensesBean.cancelEdition()}" value="#{msg.button.cancel}"/>
+                    
+                </h:form>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

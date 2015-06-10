@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 
 import javax.faces.context.FacesContext;
 
@@ -19,6 +20,10 @@ public class FacesUtils {
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().put(key, value);		
 	}
 	
+        public static void addMessage(String message, String detail) {
+                FacesContext.getCurrentInstance().addMessage(
+                    null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, detail));
+        }
 	@SuppressWarnings("unchecked")
 	public static <T> T getFlashParam(String key) {
 		return (T) FacesContext.getCurrentInstance().getExternalContext().getFlash().get(key);
