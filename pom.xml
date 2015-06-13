@@ -6,7 +6,7 @@
 	<artifactId>goblin</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
-	<name>Maven JSF 2 Webapp</name>
+	<name>goblin</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -30,6 +30,25 @@
 	</repositories>
 
 	<dependencies>
+
+		<!-- tool dependencies -->
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.19.0-GA</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.0</version>
+		</dependency>
 
 		<!-- JSF dependencies -->
 		<dependency>
@@ -93,7 +112,7 @@
 			<artifactId>lombok</artifactId>
 			<version>1.16.4</version>
 		</dependency>
-		
+
 		<!-- JPA -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
