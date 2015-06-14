@@ -24,15 +24,15 @@
 
 				<h:outputLabel value="#{msg['payable.supplier.label']}" for="supplier"/>
                                 
-                                <h:selectOneMenu id="supplier" value="#{accountsPayableBean.accountPayable.supplier}"
-                                        label="#{msg['payable.supplier.label']}">
-                                        <f:validateRequired />
-                                        <f:selectItem itemLabel="#{msg['payable.supplier.select']}" noSelectionOption="true"/>
-                                        <f:selectItems value="#{accountsPayableBean.suppliers}" var="supplier"
-                                                itemLabel="#{supplier.name}" itemValue="#{supplier}">
-                                        </f:selectItems>
-                                        <f:ajax render="dueDate" />
-                                </h:selectOneMenu>
+                <h:selectOneMenu id="supplier" value="#{accountsPayableBean.accountPayable.supplier}"
+                        label="#{msg['payable.supplier.label']}">
+                        <f:validateRequired />
+                        <f:selectItem itemLabel="#{msg['payable.supplier.select']}" noSelectionOption="true"/>
+                        <f:selectItems value="#{accountsPayableBean.suppliers}" var="supplier"
+                                itemLabel="#{supplier.name}" itemValue="#{supplier}">
+                        </f:selectItems>
+                        <f:ajax render="dueDate" />
+                </h:selectOneMenu>
 
 				<h:outputLabel value="#{msg['payable.duedate.label']}" for="dueDate"/>
 				<p:calendar id="dueDate" 

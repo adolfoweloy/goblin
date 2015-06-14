@@ -1,6 +1,7 @@
 package br.com.goblin.web.payable;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,6 +11,7 @@ import javax.faces.bean.ManagedProperty;
 import lombok.Getter;
 import lombok.Setter;
 import br.com.goblin.domain.account.AccountPayable;
+import br.com.goblin.domain.general.Month;
 import br.com.goblin.domain.supplier.Supplier;
 import br.com.goblin.persistence.dao.accounts.AccountsPayableDAO;
 import br.com.goblin.persistence.dao.supplier.SupplierDAO;
@@ -36,6 +38,10 @@ public class AccountsPayableBean implements Serializable {
 	@Setter
 	private AccountPayableViewPresenter accountPayable = new AccountPayableViewPresenter();
 
+	@Getter
+	@Setter
+	private AccountsPayableSearch search = new AccountsPayableSearch();
+	
 	@ManagedProperty(value = "#{paymentBean}")
 	private PaymentBean paymentBean;
 
@@ -43,8 +49,13 @@ public class AccountsPayableBean implements Serializable {
 	public void init() {
 		this.accounts = new AccountsPayableDAO();
 		this.suppliers = new SupplierDAO();
+		getSearch().setMonth(Month.currentMonth());
 	}
 
+	public List<Month> getMonths() {
+		return Arrays.asList(Month.values());
+	}
+	
 	public String create() {
 		setEditing(false);
 
@@ -77,20 +88,20 @@ public class AccountsPayableBean implements Serializable {
 
 	public String confirmDelete(Long id) {
 		accounts.delete(id);
-		return "/accounts-payable/list.xhtml?faces-redirect=true";
+		return "/accounts-payable/dashboard.xhtml?faces-redirect=true";
 	}
 
 	public String cancelDelete() {
-		return "/accounts-payable/list.xhtml?faces-redirect=true";
+		return "/accounts-payable/dashboard.xhtml?faces-redirect=true";
 	}
 
 	public String save() {
 		accounts.save(accountPayable.build());
-		return "list.xhtml?faces-redirect=true";
+		return "dashboard.xhtml?faces-redirect=true";
 	}
 
 	public String cancel() {
-		return "list.xhtml?faces-redirect=true";
+		return "dashboard.xhtml?faces-redirect=true";
 	}
 
 	public String pay(Long id) {
