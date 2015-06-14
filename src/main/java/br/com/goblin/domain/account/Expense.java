@@ -92,4 +92,5 @@ public class Expense {
 			.add("dateOfPayment", this.dateOfPayment)
 			.toString();
 	}	
+	
 }

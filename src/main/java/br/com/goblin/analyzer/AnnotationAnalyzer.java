@@ -91,13 +91,14 @@ public class AnnotationAnalyzer {
 			CtField[] fields = cc.getDeclaredFields();
 			
 			for (CtField field : fields) {
-				if (!field.hasAnnotation(Column.class)) {
-					cc.removeField(field);
+				if (field.hasAnnotation(Column.class)) {
+					Column c = (Column) field.getAnnotation(Column.class);
+					System.out.println(c.name());
 				}
 			}
 			
 			return cc.toClass();
-		} catch (NotFoundException | CannotCompileException e) {
+		} catch (NotFoundException | CannotCompileException | ClassNotFoundException e) {
 			throw new RuntimeException(e);
 		}
 
@@ -123,6 +124,7 @@ public class AnnotationAnalyzer {
 			String pkg = packageDetail.iterator().next();
 			String className = pkg + "." + detail.getClassName();
 			Class<?> clazz = analyzer.loadSimpleClass(className);
+			
 			System.out.println(clazz.getDeclaredMethods().length);
 		}
 

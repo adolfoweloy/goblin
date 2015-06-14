@@ -37,7 +37,7 @@ public class AccountPayable {
 	private BigDecimal value;
 	
 	@Column(name = "flag_payed")
-	private Boolean payed;
+	private Boolean payed = false;
 
 	@Deprecated // JPA purposes only
 	public AccountPayable() { }

@@ -1,6 +1,5 @@
 package br.com.goblin.web.payable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -26,10 +25,14 @@ public class ExpensesBean {
 			return expenses;
 		}
 
-		return new ArrayList<>();
+		return expenses;
 	}
 
 	public String newExpense() {
+		return "/accounts-payable/new-expense.xhtml";
+	}
+	
+	public String save() {
 
 		expenseDAO.save(expense.build());
 		FacesUtils.addMessage("Expense saved", "Expense successfuly saved");
@@ -39,6 +42,6 @@ public class ExpensesBean {
 	}
 
 	public String cancelEdition() {
-		return "/accounts-payable/expenses.xhtml?faces-redirect=true";
+		return "/accounts-payable/expenses.xhtml";
 	}
 }

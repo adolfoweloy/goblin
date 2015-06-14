@@ -53,7 +53,7 @@ public class ExpenseDAO {
 
     @SuppressWarnings("unchecked")
 	public List<Expense> findByAccountPayable(Long id) {
-		String sql = "select e from Expense e join e.accountPayable a where a.id = :id";
+		String sql = "select e from Expense e join e.accountPayable a where a.id = :id order by e.dateOfPayment desc";
 		Query query = em.createQuery(sql, Expense.class);
 		query.setParameter("id", id);
 		

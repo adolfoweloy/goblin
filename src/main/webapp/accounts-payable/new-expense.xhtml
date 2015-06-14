@@ -16,12 +16,15 @@
             
             <ui:define name="body">
                 
+                <h:messages/>
+                
                 <h:form id="formExpenses" prependId="false">
                     
                     <h:inputHidden id="expenseId" value="#{expensesBean.expense.expenseId}"/>
                     
                     <h:panelGrid columns="2">
                         
+                        <h:outputLabel value="Supplier" for="supplier"/>
                         <h:selectOneMenu id="supplier" value="#{expensesBean.expense.supplier}"
                                 label="#{msg['payable.supplier.label']}">
                                 <f:validateRequired />
@@ -44,8 +47,8 @@
                         
                     </h:panelGrid>
                     
-                    <h:commandButton action="#{expensesBean.newExpense()}" value="#{msg.button.save}"/>
-                    <h:commandButton action="#{expensesBean.cancelEdition()}" value="#{msg.button.cancel}"/>
+                    <h:commandButton action="#{expensesBean.save()}" value="#{msg['button.save']}"/>
+                    <h:commandButton action="#{expensesBean.cancelEdition}" immediate="true" value="#{msg['button.cancel']}"/>
                     
                 </h:form>
                 

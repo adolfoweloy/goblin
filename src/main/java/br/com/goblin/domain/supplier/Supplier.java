@@ -23,13 +23,13 @@ public class Supplier implements Serializable {
 	private Long id;
 	private String name;
 	
-	@Column(name = "regular_day_of_payment")
+	@Column(name = "regular_day_of_payment", nullable = false)
 	private Integer regularDayOfPayment;
 	
 	@Column(name = "tax_payer_number")
 	private String taxPayerNumber;
 	
-	@Column(name = "tax_payer_type")
+	@Column(name = "tax_payer_type", nullable = false)
 	private TaxPayerType taxPayerType;
 	
 	// JPA purposes only

@@ -2,7 +2,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
 
 	<h:body>
 
@@ -41,13 +42,13 @@
                                 </p:calendar>
 
 				<h:outputLabel value="#{msg['payable.value.label']}" for="value"/>
-				<h:inputText id="value" 
+				<pe:inputNumber decimalPlaces="2" id="value" 
 					value="#{accountsPayableBean.accountPayable.value}"
 					size="20" maxlength="6" label="#{msg['payable.value.label']}">
-					<f:validateRequired/>
+					<f:validateRequired/> 
 					<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2"/>
-				</h:inputText>
-
+				</pe:inputNumber>
+				
 			</h:panelGrid>
 
 			<h:commandButton action="#{accountsPayableBean.save}" value="#{msg['button.save']}"/>

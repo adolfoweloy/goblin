@@ -59,8 +59,7 @@
 
 						<h:panelGroup>
 							<h:inputText id="taxPayerNumber" value="#{supplierBean.supplier.taxPayerNumber}"
-								maxlength="#{supplierBean.supplier.taxPayerNumberSize}"
-								required="true" requiredMessage="#{msg['supplier.tax_payer_number.required']}">
+								maxlength="#{supplierBean.supplier.taxPayerNumberSize}">
 								<f:validator for="taxPayerNumber" validatorId="StellaCPFValidator"
 									disabled="#{!supplierBean.supplier.corporate}" />
 								<f:validator for="taxPayerNumber" validatorId="StellaCNPJValidator"

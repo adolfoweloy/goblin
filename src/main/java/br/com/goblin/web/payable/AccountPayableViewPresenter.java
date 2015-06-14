@@ -10,31 +10,33 @@ import br.com.goblin.domain.supplier.Supplier;
 public class AccountPayableViewPresenter {
 
 	private Supplier supplier;
-	
+
 	private Date dueDate;
-	
+
 	private BigDecimal value;
 
 	private Long id;
-	
-	public AccountPayableViewPresenter() {}
-	
+
+	public AccountPayableViewPresenter() {
+	}
+
 	public AccountPayableViewPresenter(Long id) {
 		this.id = id;
 	}
-	
-        /**
-         * Returns the id of current account payable
-         * @return Long
-         */
-        public Long getId() {
-            return id;
-        }
-        
-        public void setId(Long id) {
-            this.id = id;
-        }
-        
+
+	/**
+	 * Returns the id of current account payable
+	 * 
+	 * @return Long
+	 */
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Supplier getSupplier() {
 		return supplier;
 	}
@@ -48,7 +50,7 @@ public class AccountPayableViewPresenter {
 		if (id != null) {
 			return dueDate;
 		}
-		
+
 		if (supplier != null) {
 			Integer regularDayOfPayment = supplier.getRegularDayOfPayment();
 			Calendar instance = Calendar.getInstance();
@@ -56,7 +58,7 @@ public class AccountPayableViewPresenter {
 			instance.set(Calendar.DAY_OF_MONTH, regularDayOfPayment);
 			dueDate = instance.getTime();
 		}
-		
+
 		return dueDate;
 	}
 
@@ -75,14 +77,15 @@ public class AccountPayableViewPresenter {
 	public boolean getCanEditSupplier() {
 		return id != null;
 	}
-	
+
 	public AccountPayable build() {
-            Calendar due = Calendar.getInstance();
-            due.setTime(this.dueDate);
-            
-            AccountPayable payable = new AccountPayable(supplier, due, value);
-            payable.setId(id);
-            return payable;
+		Calendar due = Calendar.getInstance();
+		due.setTime(this.dueDate);
+
+		AccountPayable payable = new AccountPayable(supplier, due, value);
+		payable.setId(id);
+		payable.setPayed(false);
+		return payable;
 	}
-	
+
 }
