@@ -40,6 +40,7 @@ public class AccountsPayableBean implements Serializable {
 
 	@Getter
 	@Setter
+	@ManagedProperty(value="#{accountsPayableSearch}")
 	private AccountsPayableSearch search = new AccountsPayableSearch();
 	
 	@ManagedProperty(value = "#{paymentBean}")
@@ -49,9 +50,9 @@ public class AccountsPayableBean implements Serializable {
 	public void init() {
 		this.accounts = new AccountsPayableDAO();
 		this.suppliers = new SupplierDAO();
-		getSearch().setMonth(Month.currentMonth());
+		this.search.setMonth(Month.currentMonth());
 	}
-
+	
 	public List<Month> getMonths() {
 		return Arrays.asList(Month.values());
 	}
@@ -115,7 +116,7 @@ public class AccountsPayableBean implements Serializable {
 	public List<AccountPayable> getList() {
 
 		if (accountsPayable == null) {
-			accountsPayable = accounts.getList();
+			accountsPayable = accounts.getListByMonth(search.getMonth());
 		}
 
 		return accountsPayable;

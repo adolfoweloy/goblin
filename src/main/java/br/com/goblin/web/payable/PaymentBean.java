@@ -24,10 +24,10 @@ public class PaymentBean {
 
     public String payAccount() {
         expenseDAO.save(payment.buildExpense());
-        return "/accounts-payable/list.xhtml?faces-redirect=true";
+        return "/accounts-payable/dashboard.xhtml?faces-redirect=true";
     }
 
     public String cancel() {
-        return "/accounts-payable/list.xhtml";
+        return "/accounts-payable/dashboard.xhtml";
     }
 }
