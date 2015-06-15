@@ -37,11 +37,11 @@ public class ExpensesBean {
 		expenseDAO.save(expense.build());
 		FacesUtils.addMessage("Expense saved", "Expense successfuly saved");
 
-		return "/accounts-payable/expenses.xhtml?faces-redirect=true";
+		return "/accounts-payable/dashboard.xhtml?faces-redirect=true";
 
 	}
 
 	public String cancelEdition() {
-		return "/accounts-payable/expenses.xhtml";
+		return "/accounts-payable/dashboard.xhtml";
 	}
 }

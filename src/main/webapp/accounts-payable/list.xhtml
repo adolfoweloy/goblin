@@ -8,8 +8,15 @@
 
 	<h:form id="formAccountsPayable">
 	
-		<p:dataTable id="accountsPayableList" value="#{accountsPayableBean.list}" var="entry"
+		<p:dataTable id="accountsPayableList" 
+			value="#{accountsPayableBean.list}" var="entry"
+			styleClass="autosize"
 			rowStyleClass="#{entry.payed ? 'selected-row' : null}">
+			
+			<p:column headerText="id">
+				#{entry.id}
+			</p:column>
+			
 			<p:column headerText="#{msg['payable.supplier.label']}">
 				#{entry.supplier.name}
 			</p:column>
@@ -25,7 +32,8 @@
 			</p:column>
 
 			<p:column headerText="#{msg['core.actions']}">
-				<h:panelGrid columns="3" rendered="#{not entry.payed}">
+				<h:panelGrid columns="3" rendered="#{not entry.payed}" 
+					columnClasses="action-borders,action-borders,action-borders">
 					<h:commandLink action="#{accountsPayableBean.edit(entry.id)}"
 						title="Edit">
 						<h:graphicImage library="default" name="images/edit.png" />

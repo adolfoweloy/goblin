@@ -3,3 +3,12 @@
 .selected-row {
 	background: #B0F5C0  !important;
 }
+
+.autosize table {
+	table-layout: auto;
+}
+
+.ui-datatable .action-borders {
+	border: none;
+	padding: 0px;	
+}
