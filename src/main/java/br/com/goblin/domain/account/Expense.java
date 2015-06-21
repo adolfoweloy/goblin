@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Objects;
 
@@ -21,51 +24,27 @@ import com.google.common.base.Objects;
 @Table(name = "expense")
 public class Expense {
 
+	@Getter @Setter
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
+
+	@Getter @Setter
 	@OneToOne // maybe it could be ManyToOne regarding parts of payments
 	@JoinColumn(name = "account_payable_id", nullable = false)
 	private AccountPayable accountPayable;
-	
+
+	@Getter @Setter
 	@Column(name = "payment_value", nullable = false)
 	private BigDecimal paymentValue;
-	
+
+	@Getter @Setter
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_of_payment", nullable = false)
 	private Calendar dateOfPayment;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public AccountPayable getAccountPayable() {
-		return accountPayable;
-	}
-
-	public void setAccountPayable(AccountPayable accountPayable) {
-		this.accountPayable = accountPayable;
-	}
-
-	public BigDecimal getPaymentValue() {
-		return paymentValue;
-	}
-
-	public void setPaymentValue(BigDecimal paymentValue) {
-		this.paymentValue = paymentValue;
-	}
-
-	public Calendar getDateOfPayment() {
-		return dateOfPayment;
-	}
-
-	public void setDateOfPayment(Calendar dateOfPayment) {
-		this.dateOfPayment = dateOfPayment;
-	}
+	@Getter @Setter
+	@Column(name = "description", nullable = true, length = 100)
+	private String description;
 
 	@Override
 	public int hashCode() {
@@ -73,24 +52,28 @@ public class Expense {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		
+	public boolean equals(final Object obj) {
+
 		if (obj instanceof Expense) {
 			Expense other = (Expense) obj;
 			return Objects.equal(other.id, id);
 		}
-		
+
 		return false;
 	}
-	
+
 	@Override
 	public String toString() {
 		return MoreObjects.toStringHelper(this)
-			.add("id", this.id)
-			.add("accountPayable", this.accountPayable)
-			.add("paymentValue", this.paymentValue)
-			.add("dateOfPayment", this.dateOfPayment)
-			.toString();
-	}	
-	
+				.add("id", this.id)
+				.add("accountPayable", this.accountPayable)
+				.add("paymentValue", this.paymentValue)
+				.add("dateOfPayment", this.dateOfPayment)
+				.toString();
+	}
+
+	public boolean hasAccountPayable() {
+		return accountPayable != null;
+	}
+
 }

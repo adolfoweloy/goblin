@@ -1,0 +1,1 @@
+alter table expense add column description varchar(100);

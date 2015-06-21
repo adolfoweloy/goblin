@@ -4,8 +4,6 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h:outputStylesheet library="default" name="css/general.css" />
-
 	<h:form id="formAccountsPayable">
 	
 		<p:dataTable id="accountsPayableList" 
@@ -18,7 +16,8 @@
 			</p:column>
 			
 			<p:column headerText="#{msg['payable.supplier.label']}">
-				#{entry.supplier.name}
+				<h:outputText value="#{entry.supplier.name}" 
+				/>
 			</p:column>
 			
 			<p:column headerText="#{msg['payable.duedate.label']}">
@@ -34,12 +33,10 @@
 			<p:column headerText="#{msg['core.actions']}">
 				<h:panelGrid columns="3" rendered="#{not entry.payed}" 
 					columnClasses="action-borders,action-borders,action-borders">
-					<h:commandLink action="#{accountsPayableBean.edit(entry.id)}"
-						title="Edit">
+					<h:commandLink action="#{accountsPayableBean.edit(entry.id)}" title="Edit">
 						<h:graphicImage library="default" name="images/edit.png" />
 					</h:commandLink>
-					<h:commandLink action="#{accountsPayableBean.delete(entry.id)}"
-						title="Delete">
+					<h:commandLink action="#{accountsPayableBean.delete(entry.id)}" title="Delete">
 						<h:graphicImage library="default" name="images/delete.png" />
 					</h:commandLink>
 					<h:commandLink action="#{accountsPayableBean.pay(entry.id)}"

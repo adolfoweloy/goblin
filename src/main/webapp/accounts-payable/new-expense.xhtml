@@ -21,18 +21,20 @@
                 <h:form id="formExpenses" prependId="false">
                     
                     <h:inputHidden id="expenseId" value="#{expensesBean.expense.expenseId}"/>
-                    
+                    <h:inputHidden id="accountPayableId" value="#{expensesBean.expense.accountPayableId}"/>
                     <h:panelGrid columns="2">
                         
                         <h:outputLabel value="Supplier" for="supplier"/>
                         <h:selectOneMenu id="supplier" value="#{expensesBean.expense.supplier}"
                                 label="#{msg['payable.supplier.label']}">
-                                <f:validateRequired />
                                 <f:selectItem itemLabel="#{msg['payable.supplier.select']}" noSelectionOption="true"/>
                                 <f:selectItems value="#{accountsPayableBean.suppliers}" var="supplier"
                                         itemLabel="#{supplier.name}" itemValue="#{supplier}">
                                 </f:selectItems>
                         </h:selectOneMenu>
+                        
+                        <h:outputLabel value="Description" for="description"/>
+                        <h:inputTextarea id="description" rows="2" cols="40" value="#{expensesBean.expense.description}"/>
                         
                         <h:outputLabel value="Date of payment" for="dateOfPayment"/>
                         <p:calendar id="dateOfPayment" showOn="button"
