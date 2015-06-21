@@ -23,8 +23,8 @@ public class Supplier implements Serializable {
 	private Long id;
 	private String name;
 	
-	@Column(name = "regular_day_of_payment", nullable = false)
-	private Integer regularDayOfPayment;
+	@Column(name = "regular_day_of_payment")
+	private Integer regularDayOfPayment = 1;
 	
 	@Column(name = "tax_payer_number")
 	private String taxPayerNumber;

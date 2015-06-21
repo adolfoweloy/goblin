@@ -1,6 +1,7 @@
 package br.com.goblin.web.payable;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,13 +47,19 @@ public class AccountsPayableBean implements Serializable {
 	@ManagedProperty(value = "#{paymentBean}")
 	private PaymentBean paymentBean;
 
+	@Getter
+	private BigDecimal totalPayed = BigDecimal.ZERO;
+
+	@Getter
+	private BigDecimal totalToPay = BigDecimal.ZERO;
+
 	@PostConstruct
 	public void init() {
 		this.accounts = new AccountsPayableDAO();
 		this.suppliers = new SupplierDAO();
 		this.search.setMonth(Month.currentMonth());
 	}
-	
+
 	public List<Month> getMonths() {
 		return Arrays.asList(Month.values());
 	}
@@ -119,6 +126,16 @@ public class AccountsPayableBean implements Serializable {
 			accountsPayable = accounts.getListByMonth(search.getMonth());
 		}
 
+		totalPayed = BigDecimal.ZERO;
+		totalToPay = BigDecimal.ZERO;
+		for (AccountPayable p : accountsPayable) {
+			if (p.getPayed()) {
+				totalPayed = p.getValue().add(totalPayed);
+			} else {
+				totalToPay = p.getValue().add(totalToPay);
+			}
+		}
+		
 		return accountsPayable;
 	}
 

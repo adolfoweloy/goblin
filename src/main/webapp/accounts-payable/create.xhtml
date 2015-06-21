@@ -44,7 +44,7 @@
 				<h:outputLabel value="#{msg['payable.value.label']}" for="value"/>
 				<pe:inputNumber decimalPlaces="2" id="value" 
 					value="#{accountsPayableBean.accountPayable.value}"
-					size="20" maxlength="6" label="#{msg['payable.value.label']}">
+					maxlength="6" label="#{msg['payable.value.label']}">
 					<f:validateRequired/> 
 					<f:convertNumber type="number" maxFractionDigits="2" minFractionDigits="2"/>
 				</pe:inputNumber>

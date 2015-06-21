@@ -4,62 +4,94 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<h:body>
+<h:body>
 
-		<ui:composition template="/WEB-INF/template/main.xhtml">
+	<ui:composition template="/WEB-INF/template/main.xhtml">
 
-			<ui:define name="body">
-			
-				<p:panelGrid style="width: 60%">
-					<f:facet name="header">
-						<p:row>
-							<p:column colspan="2">#{msg['payable.title']}</p:column>
-						</p:row>
-					</f:facet>
-					
-					<f:facet name="footer">
-						<p:row>
-							<p:column colspan="2">
-								<h:form id="commands" prependId="false">
-									<h:commandLink id="newAccountPayable"
-										action="#{accountsPayableBean.create}"
-										title="New account payable">
-										<h:graphicImage library="default" name="images/new.png" />
-									</h:commandLink>
-									
-									<h:commandLink id="newExpense" action="#{expensesBean.newExpense}" title="New expense">
-										<h:graphicImage library="default" name="images/new-expense.png" />
-									</h:commandLink>									
-								</h:form>
-							</p:column>
-						</p:row>
-					</f:facet>
-					
+		<ui:define name="body">
+
+			<p:panelGrid style="width: 60%">
+				<f:facet name="header">
 					<p:row>
-						<p:column>
-							<h:form id="search">
-									<h:outputLabel value="Month" for="month"/>
-									<h:selectOneMenu id="month" value="#{accountsPayableBean.search.month}">
-										<f:selectItems value="#{accountsPayableBean.months}" var="month" 
-											itemLabel="#{month.name}" itemValue="#{month}"/>
-										<f:ajax render=":formAccountsPayable:accountsPayableList"/>
-									</h:selectOneMenu>
+						<p:column colspan="2">#{msg['payable.title']}</p:column>
+					</p:row>
+				</f:facet>
+
+				<f:facet name="footer">
+					<p:row>
+						<p:column colspan="2">
+							<h:form id="commands" prependId="false">
+								<h:commandLink id="newAccountPayable"
+									action="#{accountsPayableBean.create}"
+									title="New account payable">
+									<h:graphicImage library="default" name="images/new.png" />
+								</h:commandLink>
+
+								<h:commandLink id="newExpense"
+									action="#{expensesBean.newExpense}" title="New expense">
+									<h:graphicImage library="default" name="images/new-expense.png" />
+								</h:commandLink>
 							</h:form>
 						</p:column>
 					</p:row>
+				</f:facet>
 
-					<p:row>
-						<p:column colspan="2">
-								<ui:include src="/accounts-payable/list.xhtml" />
-						</p:column>
-					</p:row>
-				</p:panelGrid>
-			
+				<p:row>
+					<p:column>
+						<h:form id="search">
+							<h:outputLabel value="Month" for="month" />
+							<h:selectOneMenu id="month"
+								value="#{accountsPayableBean.search.month}">
+								<f:selectItems value="#{accountsPayableBean.months}" var="month"
+									itemLabel="#{month.name}" itemValue="#{month}" />
+								<f:ajax
+									render=":formAccountsPayable:accountsPayableList :totalPayed :totalToPay :totalPresent" />
+							</h:selectOneMenu>
+						</h:form>
+					</p:column>
+				</p:row>
 
+				<p:row>
+					<p:column colspan="2">
+						<ui:include src="/accounts-payable/list.xhtml" />
+					</p:column>
+				</p:row>
 
-			</ui:define>
-		</ui:composition>
+				<p:row>
+					<p:column colspan="2" styleClass="ui-widget-header">
+						<p:spacer height="0" />
+					</p:column>
+				</p:row>
 
-	</h:body>
+				<p:row>
+					<p:column style="font-weight: bold;">Total to pay</p:column>
+					<p:column>
+						<h:outputText value="#{accountsPayableBean.totalToPay}"
+							id="totalToPay" />
+					</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">Total payed</p:column>
+					<p:column>
+						<h:outputText value="#{accountsPayableBean.totalPayed}"
+							id="totalPayed" />
+					</p:column>
+				</p:row>
+
+				<p:row>
+					<p:column style="font-weight: bold;">Total</p:column>
+					<p:column>
+						<h:outputText
+							value="#{accountsPayableBean.totalPayed + accountsPayableBean.totalToPay}"
+							id="totalPresent" />
+					</p:column>
+				</p:row>
+
+			</p:panelGrid>
+
+		</ui:define>
+	</ui:composition>
+
+</h:body>
 
 </html>
